@@ -217,10 +217,6 @@
 #define SB_WIDTH_MINIMUM 	5
 #define SB_WIDTH_MAXIMUM 	100
 
-/*
- * rxvt scrollbar shadow width in pixels, must be 1 or 2
- */
-#define SHADOW_WIDTH 1
 
 /*
  * clicking above or below the scrollbar slider (all styles minus
@@ -319,7 +315,6 @@
 #define COLOR_FOREGROUND	"rgb:00/00/00"
 #define COLOR_BACKGROUND	"rgb:ff/ff/ff"
 #define COLOR_SCROLLBAR		"rgb:b2/b2/b2"	/* scrollColor match Netscape */
-#define COLOR_SCROLLTROUGH	"rgb:96/96/96"
 
 /*
  * The cursor colours are special.  Be very careful about setting these:

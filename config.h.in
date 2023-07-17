@@ -202,9 +202,6 @@
 /* Disable assertions (good for debugging) */
 #undef NDEBUG
 
-/* Support NeXT style scrollbars */
-#undef NEXT_SCROLLBAR
-
 /* Define if you don't want support for the backspace key */
 #undef NO_BACKSPACE_KEY
 
@@ -261,8 +258,6 @@
 /* Binary base name */
 #undef RXVTNAME
 
-/* Support Rxvt original style scrollbars */
-#undef RXVT_SCROLLBAR
 
 /* Set TERMINFO value to the value given by configure */
 #undef RXVT_TERMINFO
@@ -394,9 +389,6 @@
 
 /* Define to enable xrender support */
 #undef XRENDER
-
-/* Support Xterm style scrollbars */
-#undef XTERM_SCROLLBAR
 
 /* Define to 1 if the X Window System is missing or not being used. */
 #undef X_DISPLAY_MISSING

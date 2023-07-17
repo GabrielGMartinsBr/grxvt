@@ -302,9 +302,6 @@ struct mouse_event
 
 #define scrollBar_esc           30
 
-#if !defined (RXVT_SCROLLBAR) && !defined (NEXT_SCROLLBAR)
-# define NO_SCROLLBAR_BUTTON_CONTINUAL_SCROLLING 1
-#endif
 
 enum {
   NO_REFRESH       = 0,  /* Window not visible at all!        */
@@ -528,20 +525,12 @@ enum colour_list {
   Color_HTC,
 #endif
   Color_scroll,
-#ifdef RXVT_SCROLLBAR
-  Color_trough,
-#endif
 #if OFF_FOCUS_FADING
   Color_fade,
 #endif
   NRS_COLORS,                 /* */
-#ifdef RXVT_SCROLLBAR
-  Color_topShadow = NRS_COLORS,
-  Color_bottomShadow,
-  TOTAL_COLORS
-#else
+
   TOTAL_COLORS = NRS_COLORS
-#endif
 };
 
 #if USE_256_COLORS

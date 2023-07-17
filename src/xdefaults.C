@@ -175,9 +175,6 @@ optList[] = {
               RSTRG (Rs_color + Color_underline, "underlineColor", "color"),
 #endif
               RSTRG (Rs_color + Color_scroll, "scrollColor", "color"),
-#ifdef RXVT_SCROLLBAR
-              RSTRG (Rs_color + Color_trough, "troughColor", "color"),
-#endif
 #ifdef OPTION_HC
               STRG (Rs_color + Color_HC, "highlightColor", "hc", "color", "highlight color"),
               RSTRG (Rs_color + Color_HTC, "highlightTextColor", "color"),
@@ -375,15 +372,7 @@ static const char optionsstring[] = "options: "
                                     "NoResources,"
 #endif
                                     "scrollbars=plain"
-#if defined(RXVT_SCROLLBAR)
-                                    "+rxvt"
-#endif
-#if defined(NEXT_SCROLLBAR)
-                                    "+NeXT"
-#endif
-#if defined(XTERM_SCROLLBAR)
-                                    "+xterm"
-#endif
+
                                     "\nUsage: ";		/* Usage */
 
 #define INDENT 28

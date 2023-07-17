@@ -558,9 +558,6 @@ static const char *const def_colorName[] =
     NULL,
 #endif
     COLOR_SCROLLBAR,
-#ifdef RXVT_SCROLLBAR
-    COLOR_SCROLLTROUGH,
-#endif
 #if OFF_FOCUS_FADING
     "rgb:00/00/00",
 #endif
@@ -1146,22 +1143,6 @@ rxvt_term::get_colors ()
    * The calculations of topShadow/bottomShadow values are adapted
    * from the fvwm window manager.
    */
-#ifdef RXVT_SCROLLBAR
-  pix_colors [Color_scroll].fade (this, 50, pix_colors [Color_bottomShadow]);
-
-  rgba cscroll;
-  pix_colors [Color_scroll].get (cscroll);
-
-  /* topShadowColor */
-  if (!pix_colors[Color_topShadow].set (this,
-                   rgba (
-                     min ((int)rgba::MAX_CC, max (cscroll.r / 5, cscroll.r) * 7 / 5),
-                     min ((int)rgba::MAX_CC, max (cscroll.g / 5, cscroll.g) * 7 / 5),
-                     min ((int)rgba::MAX_CC, max (cscroll.b / 5, cscroll.b) * 7 / 5),
-                     cscroll.a)
-                   ))
-    alias_color (Color_topShadow, Color_White);
-#endif
 
 #ifdef OFF_FOCUS_FADING
   for (i = 0; i < NRS_COLORS; i++)

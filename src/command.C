@@ -2074,13 +2074,6 @@ rxvt_term::button_press (XButtonEvent &ev)
                         break;
                     }
 
-                  if (scrollBar.style == SB_STYLE_XTERM
-                      || scrollBar.above_slider (ev.y)
-                      || scrollBar.below_slider (ev.y))
-                    scr_move_to (scrollBar.position (ev.y) - csrO, scrollBar.size ());
-
-                  scrollBar.state = SB_STATE_MOTION;
-                  break;
 
                 case Button1:
                   if (scrollBar.align == SB_ALIGN_CENTRE)

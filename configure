@@ -7726,24 +7726,6 @@ scrolltypes=plain
 printf "%s\n" "#define PLAIN_SCROLLBAR 1" >>confdefs.h
 
 
-if test x$support_scroll_rxvt = xyes; then
-
-printf "%s\n" "#define RXVT_SCROLLBAR 1" >>confdefs.h
-
-  scrolltypes="$scrolltypes rxvt"
-fi
-if test x$support_scroll_next = xyes; then
-
-printf "%s\n" "#define NEXT_SCROLLBAR 1" >>confdefs.h
-
-  scrolltypes="$scrolltypes next"
-fi
-if test x$support_scroll_xterm = xyes; then
-
-printf "%s\n" "#define XTERM_SCROLLBAR 1" >>confdefs.h
-
-  scrolltypes="$scrolltypes xterm"
-fi
 if test x$support_pointer_blank = xyes; then
 
 printf "%s\n" "#define POINTER_BLANK 1" >>confdefs.h

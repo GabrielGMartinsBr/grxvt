@@ -709,18 +709,7 @@ fi
 scrolltypes=plain
 AC_DEFINE(PLAIN_SCROLLBAR, 1, Support plain style scrollbars)
 
-if test x$support_scroll_rxvt = xyes; then
-  AC_DEFINE(RXVT_SCROLLBAR, 1, Support Rxvt original style scrollbars)
-  scrolltypes="$scrolltypes rxvt"
-fi
-if test x$support_scroll_next = xyes; then
-  AC_DEFINE(NEXT_SCROLLBAR, 1, Support NeXT style scrollbars)
-  scrolltypes="$scrolltypes next"
-fi
-if test x$support_scroll_xterm = xyes; then
-  AC_DEFINE(XTERM_SCROLLBAR, 1, Support Xterm style scrollbars)
-  scrolltypes="$scrolltypes xterm"
-fi
+
 if test x$support_pointer_blank = xyes; then
   AC_DEFINE(POINTER_BLANK, 1, Define if you want to hide the pointer while typing)
 fi
