@@ -114,7 +114,7 @@ void scrollBar_t::setup(rxvt_term *term)
   scrollalign = term->rs[Rs_scrollBar_align];
   thickness = term->rs[Rs_scrollBar_thickness];
 
-  width = SB_WIDTH_PLAIN;
+  width = SB_WIDTH;
 
   if (thickness && (i = atoi(thickness)) >= SB_WIDTH_MINIMUM)
     width = min(i, SB_WIDTH_MAXIMUM);

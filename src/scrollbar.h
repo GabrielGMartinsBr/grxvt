@@ -8,7 +8,7 @@
 struct rxvt_term;
 
 
-#define SB_WIDTH_PLAIN 7
+#define SB_WIDTH 7
 
 
 /*
