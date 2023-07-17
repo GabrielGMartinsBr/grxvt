@@ -838,7 +838,7 @@ void rxvt_term::init2(int argc, const char *const *argv)
   if (pty->pty >= 0)
     pty_ev.start(pty->pty, ev::READ);
 
-  HOOK_INVOKE((this, HOOK_START, DT_END));
+  // HOOK_INVOKE((this, HOOK_START, DT_END));
 
 #if ENABLE_XEMBED
   if (rs[Rs_embed]) {
@@ -1478,7 +1478,7 @@ void rxvt_term::run_command(const char *const *argv)
 
       child_ev.start(cmd_pid);
 
-      HOOK_INVOKE((this, HOOK_CHILD_START, DT_INT, cmd_pid, DT_END));
+      // HOOK_INVOKE((this, HOOK_CHILD_START, DT_INT, cmd_pid, DT_END));
       break;
   }
 }

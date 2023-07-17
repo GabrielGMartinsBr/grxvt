@@ -83,7 +83,6 @@ typedef int32_t tlen_t_;  // specifically for use in the line_t structure
 #include "ev_cpp.h"
 #include "rxvtfont.h"
 #include "rxvtimg.h"
-#include "rxvtperl.h"
 #include "rxvttoolkit.h"
 #include "rxvtutil.h"
 #include "scrollbar.h"
@@ -465,7 +464,6 @@ enum {
   URxvt_view_down = 721,
 
   URxvt_cellinfo = 776,  // returns font cell width, height etc.
-  URxvt_perl = 777,      // for use by perl extensions, starts with "extension-name;"
 };
 
 /* Words starting with `Color_' are colours.  Others are counts */
@@ -1229,11 +1227,11 @@ struct rxvt_term : zero_initialized, rxvt_vars, rxvt_screen {
 #endif
 #endif
 
-  long vt_emask, vt_emask_perl, vt_emask_xim, vt_emask_mouse;
+  long vt_emask, vt_emask_xim, vt_emask_mouse;
 
   void vt_select_input() const noexcept
   {
-    XSelectInput(dpy, vt, vt_emask | vt_emask_perl | vt_emask_xim | vt_emask_mouse);
+    XSelectInput(dpy, vt, vt_emask | vt_emask_xim | vt_emask_mouse);
   }
 
   void x_cb(XEvent &xev);

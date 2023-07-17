@@ -135,34 +135,8 @@ src/typemap
 src/typemap.iom
 src/iom_perl.h
 src/iom_perl.xs
-src/rxvtperl.h
-src/rxvtperl.xs
 
-src/perl/background
-src/perl/bell-command
-src/perl/block-graphics-to-ascii
-src/perl/clickthrough
-src/perl/clipboard-osc
-src/perl/confirm-paste
-src/perl/digital-clock
-src/perl/eval
-src/perl/example-refresh-hooks
-src/perl/keysym-list
-src/perl/kuake
-src/perl/matcher
-src/perl/option-popup
-src/perl/overlay-osc
-src/perl/readline
-src/perl/remote-clipboard
-src/perl/searchable-scrollback
-src/perl/selection
-src/perl/selection-autotransform
-src/perl/selection-pastebin
-src/perl/selection-popup
-src/perl/selection-to-clipboard
-src/perl/tabbed
-src/perl/urxvt-popup
-src/perl/xim-onthespot
+
 
 libev/LICENSE
 libev/ev.h

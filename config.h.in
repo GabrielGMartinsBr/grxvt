@@ -9,9 +9,6 @@
 /* Define if you want handling for rarely used but handy features */
 #undef ENABLE_FRILLS
 
-/* Define if you can embed a perl interpreter */
-#undef ENABLE_PERL
-
 /* Define if you want bold and italic support */
 #undef ENABLE_STYLES
 

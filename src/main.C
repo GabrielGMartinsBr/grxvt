@@ -35,7 +35,6 @@
 #include "rxvt.h"               /* NECESSARY */
 #include "init.h"
 #include "keyboard.h"
-#include "rxvtperl.h"
 
 #include <limits>
 
@@ -288,7 +287,7 @@ rxvt_term::~rxvt_term()
 // child has exited, usually destroys
 void rxvt_term::child_cb(ev::child &w, int status)
 {
-  HOOK_INVOKE((this, HOOK_CHILD_EXIT, DT_INT, status, DT_END));
+  // HOOK_INVOKE((this, HOOK_CHILD_EXIT, DT_INT, status, DT_END));
 
   cmd_pid = 0;
 
@@ -301,7 +300,7 @@ void rxvt_term::destroy()
   if (destroy_ev.is_active())
     return;
 
-  HOOK_INVOKE((this, HOOK_DESTROY, DT_END));
+  // HOOK_INVOKE((this, HOOK_DESTROY, DT_END));
 
 #if ENABLE_OVERLAY
   scr_overlay_off();
@@ -1002,7 +1001,8 @@ void rxvt_term::resize_all_windows(unsigned int newwidth, unsigned int newheight
 
   window_calc(newwidth, newheight);
 
-  bool set_hint = !HOOK_INVOKE((this, HOOK_RESIZE_ALL_WINDOWS, DT_INT, newwidth, DT_INT, newheight, DT_END));
+  // bool set_hint = !HOOK_INVOKE((this, HOOK_RESIZE_ALL_WINDOWS, DT_INT, newwidth, DT_INT, newheight, DT_END));
+  bool set_hint = true;
 
   // to avoid races between us and the wm, we clear the incremental size hints around the xresizewindow
   if (set_hint) {
@@ -1067,7 +1067,7 @@ void rxvt_term::resize_all_windows(unsigned int newwidth, unsigned int newheight
 
     XMoveResizeWindow(dpy, vt, window_vt_x, window_vt_y, vt_width, vt_height);
 
-    HOOK_INVOKE((this, HOOK_SIZE_CHANGE, DT_INT, newwidth, DT_INT, newheight, DT_END));
+    // HOOK_INVOKE((this, HOOK_SIZE_CHANGE, DT_INT, newwidth, DT_INT, newheight, DT_END));
   }
 
   if (fix_screen || old_height == 0)
@@ -1199,14 +1199,14 @@ static void
 xim_preedit_start(XIC ic, XPointer client_data, XPointer call_data)
 {
   ((rxvt_term *)client_data)->make_current();
-  HOOK_INVOKE(((rxvt_term *)client_data, HOOK_XIM_PREEDIT_START, DT_END));
+  // HOOK_INVOKE(((rxvt_term *)client_data, HOOK_XIM_PREEDIT_START, DT_END));
 }
 
 static void
 xim_preedit_done(XIC ic, XPointer client_data, XPointer call_data)
 {
   ((rxvt_term *)client_data)->make_current();
-  HOOK_INVOKE(((rxvt_term *)client_data, HOOK_XIM_PREEDIT_DONE, DT_END));
+  // HOOK_INVOKE(((rxvt_term *)client_data, HOOK_XIM_PREEDIT_DONE, DT_END));
 }
 
 static void
@@ -1233,9 +1233,10 @@ xim_preedit_draw(XIC ic, XPointer client_data, XIMPreeditDrawCallbackStruct *cal
     } else
       str = text->string.wide_char;
 
-    HOOK_INVOKE((term, HOOK_XIM_PREEDIT_DRAW, DT_INT, call_data->caret, DT_INT, call_data->chg_first, DT_INT, call_data->chg_length, DT_LCS_LEN, (void *)text->feedback, text->feedback ? (int)text->length : 0, DT_WCS_LEN, str, str ? (int)text->length : 0, DT_END));
-  } else
-    HOOK_INVOKE((term, HOOK_XIM_PREEDIT_DRAW, DT_INT, call_data->caret, DT_INT, call_data->chg_first, DT_INT, call_data->chg_length, DT_END));
+    // HOOK_INVOKE((term, HOOK_XIM_PREEDIT_DRAW, DT_INT, call_data->caret, DT_INT, call_data->chg_first, DT_INT, call_data->chg_length, DT_LCS_LEN, (void *)text->feedback, text->feedback ? (int)text->length : 0, DT_WCS_LEN, str, str ? (int)text->length : 0, DT_END));
+  }
+  // else
+    // HOOK_INVOKE((term, HOOK_XIM_PREEDIT_DRAW, DT_INT, call_data->caret, DT_INT, call_data->chg_first, DT_INT, call_data->chg_length, DT_END));
 }
 
 #if 0
@@ -1306,8 +1307,8 @@ bool rxvt_term::im_get_ic(const char *modifiers)
       else if (!strcmp(s[i], "None"))
         input_style = XIMPreeditNone | XIMStatusNone;
 #ifdef ENABLE_XIM_ONTHESPOT
-      else if (SHOULD_INVOKE(HOOK_XIM_PREEDIT_START) && !strcmp(s[i], "OnTheSpot"))
-        input_style = XIMPreeditCallbacks | XIMStatusNothing;
+      // else if (SHOULD_INVOKE(HOOK_XIM_PREEDIT_START) && !strcmp(s[i], "OnTheSpot"))
+      //   input_style = XIMPreeditCallbacks | XIMStatusNothing;
 #endif
       else
         input_style = XIMPreeditNothing | XIMStatusNothing;

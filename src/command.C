@@ -49,7 +49,6 @@
 #include "../config.h"
 #include "command.h"
 #include "rxvt.h"
-#include "rxvtperl.h"
 #include "version.h"
 
 #ifdef KEYSYM_RESOURCE
@@ -687,8 +686,8 @@ rxvt_term::key_press(XKeyEvent &ev)
     len++;
   }
 
-  if (HOOK_INVOKE((this, HOOK_KEY_PRESS, DT_XEVENT, &ev, DT_INT, keysym, DT_STR_LEN, kbuf, len, DT_END)))
-    return;
+  // if (HOOK_INVOKE((this, HOOK_KEY_PRESS, DT_XEVENT, &ev, DT_INT, keysym, DT_STR_LEN, kbuf, len, DT_END)))
+  //   return;
 
   if (keysym != NoSymbol) {
 #ifdef KEYSYM_RESOURCE
@@ -888,8 +887,8 @@ rxvt_term::key_release(XKeyEvent &ev)
     }
 #endif
 
-  if (HOOK_INVOKE((this, HOOK_KEY_RELEASE, DT_XEVENT, &ev, DT_INT, keysym, DT_END)))
-    return;
+  // if (HOOK_INVOKE((this, HOOK_KEY_RELEASE, DT_XEVENT, &ev, DT_INT, keysym, DT_END)))
+  //   return;
 
 #if defined(MOUSE_WHEEL) && defined(MOUSE_SLIP_WHEELING)
   if (!(ev.state & ControlMask))
@@ -911,7 +910,8 @@ void rxvt_term::flush()
 #endif
 
   if (want_refresh) {
-    if (SHOULD_INVOKE(HOOK_LINE_UPDATE)) {
+    // if (SHOULD_INVOKE(HOOK_LINE_UPDATE)) {
+    if (false) {
       int row = view_start;
       int end_row = row + nrow;
 
@@ -934,7 +934,7 @@ void rxvt_term::flush()
             }
 
             // and filter it
-            HOOK_INVOKE((this, HOOK_LINE_UPDATE, DT_INT, start_row, DT_END));
+            // HOOK_INVOKE((this, HOOK_LINE_UPDATE, DT_INT, start_row, DT_END));
 
             break;
           }
@@ -1272,7 +1272,10 @@ rxvt_term::x_cb(XEvent &ev)
 
   dLocal(Display *, dpy);
 
-  if (ev.xany.window == vt && SHOULD_INVOKE(HOOK_X_EVENT) && HOOK_INVOKE((this, HOOK_X_EVENT, DT_XEVENT, &ev, DT_END)))
+  if (
+    ev.xany.window == vt
+    // && SHOULD_INVOKE(HOOK_X_EVENT) && HOOK_INVOKE((this, HOOK_X_EVENT, DT_XEVENT, &ev, DT_END))
+  )
     return;
 
   // for XQueryPointer
@@ -1298,18 +1301,23 @@ rxvt_term::x_cb(XEvent &ev)
       break;
 
     case ClientMessage:
-      if (ev.xclient.format == 32 && !HOOK_INVOKE((this, HOOK_CLIENT_MESSAGE, DT_XEVENT, &ev, DT_END))) {
+      if (
+        ev.xclient.format == 32
+          // && !HOOK_INVOKE((this, HOOK_CLIENT_MESSAGE, DT_XEVENT, &ev, DT_END))
+          ) {
         if (ev.xclient.message_type == xa[XA_WM_PROTOCOLS]) {
-          if (!HOOK_INVOKE((this, HOOK_WM_PROTOCOLS, DT_XEVENT, &ev, DT_END))) {
-            if (ev.xclient.data.l[0] == xa[XA_WM_DELETE_WINDOW]) {
-              if (!HOOK_INVOKE((this, HOOK_WM_DELETE_WINDOW, DT_XEVENT, &ev, DT_END)))
-                destroy();
-            }
+          // if (
+          //   !HOOK_INVOKE((this, HOOK_WM_PROTOCOLS, DT_XEVENT, &ev, DT_END))
+          //   ) {
+          //   if (ev.xclient.data.l[0] == xa[XA_WM_DELETE_WINDOW]) {
+          //     if (!HOOK_INVOKE((this, HOOK_WM_DELETE_WINDOW, DT_XEVENT, &ev, DT_END)))
+          //       destroy();
+          //   }
 #if ENABLE_EWMH
-            else if (ev.xclient.data.l[0] == xa[XA_NET_WM_PING])
+            if (ev.xclient.data.l[0] == xa[XA_NET_WM_PING])
               XSendEvent(dpy, ev.xclient.window = display->root, False, SubstructureRedirectMask | SubstructureNotifyMask, &ev);
 #endif
-          }
+          // }
         }
 #if ENABLE_XEMBED
         else if (ev.xclient.format == 32 && ev.xclient.message_type == xa[XA_XEMBED]) {
@@ -1361,7 +1369,8 @@ rxvt_term::x_cb(XEvent &ev)
         while (XCheckTypedWindowEvent(dpy, ev.xconfigure.window, ConfigureNotify, &ev))
           ;
 
-        bool want_position_change = SHOULD_INVOKE(HOOK_POSITION_CHANGE);
+        // bool want_position_change = SHOULD_INVOKE(HOOK_POSITION_CHANGE);
+        bool want_position_change = false;
 
         if (want_position_change) {
           int x, y;
@@ -1375,7 +1384,7 @@ rxvt_term::x_cb(XEvent &ev)
           if (x != parent_x || y != parent_y) {
             parent_x = x;
             parent_y = y;
-            HOOK_INVOKE((this, HOOK_POSITION_CHANGE, DT_INT, x, DT_INT, y, DT_END));
+            // HOOK_INVOKE((this, HOOK_POSITION_CHANGE, DT_INT, x, DT_INT, y, DT_END));
           }
         }
 
@@ -1384,12 +1393,12 @@ rxvt_term::x_cb(XEvent &ev)
           resize_all_windows(ev.xconfigure.width, ev.xconfigure.height, 1);
         }
 
-        HOOK_INVOKE((this, HOOK_CONFIGURE_NOTIFY, DT_XEVENT, &ev, DT_END));
+        // HOOK_INVOKE((this, HOOK_CONFIGURE_NOTIFY, DT_XEVENT, &ev, DT_END));
       }
       break;
 
     case PropertyNotify:
-      HOOK_INVOKE((this, HOOK_PROPERTY_NOTIFY, DT_XEVENT, &ev, DT_END));
+      // HOOK_INVOKE((this, HOOK_PROPERTY_NOTIFY, DT_XEVENT, &ev, DT_END));
       break;
 
     case SelectionClear:
@@ -1405,7 +1414,7 @@ rxvt_term::x_cb(XEvent &ev)
 #ifdef TEXT_BLINK
       text_blink_ev.start();
 #endif
-      HOOK_INVOKE((this, HOOK_MAP_NOTIFY, DT_XEVENT, &ev, DT_END));
+      // HOOK_INVOKE((this, HOOK_MAP_NOTIFY, DT_XEVENT, &ev, DT_END));
       break;
 
     case UnmapNotify:
@@ -1413,7 +1422,7 @@ rxvt_term::x_cb(XEvent &ev)
 #ifdef TEXT_BLINK
       text_blink_ev.stop();
 #endif
-      HOOK_INVOKE((this, HOOK_UNMAP_NOTIFY, DT_XEVENT, &ev, DT_END));
+      // HOOK_INVOKE((this, HOOK_UNMAP_NOTIFY, DT_XEVENT, &ev, DT_END));
       break;
 
     case GraphicsExpose:
@@ -1456,9 +1465,10 @@ rxvt_term::x_cb(XEvent &ev)
         break;
 
       if (ev.xany.window == vt) {
-        if (SHOULD_INVOKE(HOOK_MOTION_NOTIFY) && HOOK_INVOKE((this, HOOK_MOTION_NOTIFY, DT_XEVENT, &ev, DT_END)))
-          ;  // nop
-        else if (ev.xbutton.state & (Button1Mask | Button3Mask)) {
+        // if (SHOULD_INVOKE(HOOK_MOTION_NOTIFY) && HOOK_INVOKE((this, HOOK_MOTION_NOTIFY, DT_XEVENT, &ev, DT_END)))
+          // ;  // nop
+          // else
+            if (ev.xbutton.state & (Button1Mask | Button3Mask)) {
           while (XCheckTypedWindowEvent(dpy, vt, MotionNotify, &ev))
             ;
 
@@ -1596,7 +1606,7 @@ rxvt_term::focus_in()
       tt_printf("\x1b[I");
 #endif
 
-    HOOK_INVOKE((this, HOOK_FOCUS_IN, DT_END));
+    // HOOK_INVOKE((this, HOOK_FOCUS_IN, DT_END));
   }
 }
 
@@ -1639,7 +1649,7 @@ rxvt_term::focus_out()
     }
 #endif
 
-    HOOK_INVOKE((this, HOOK_FOCUS_OUT, DT_END));
+    // HOOK_INVOKE((this, HOOK_FOCUS_OUT, DT_END));
   }
 }
 
@@ -1671,8 +1681,8 @@ void rxvt_term::button_press(XButtonEvent &ev)
    * VT window processing of button press
    */
   if (ev.window == vt) {
-    if (HOOK_INVOKE((this, HOOK_BUTTON_PRESS, DT_XEVENT, &ev, DT_END)))
-      return;
+    // if (HOOK_INVOKE((this, HOOK_BUTTON_PRESS, DT_XEVENT, &ev, DT_END)))
+    //   return;
 
 #if ISO_14755
     // 5.4
@@ -1872,8 +1882,8 @@ void rxvt_term::button_release(XButtonEvent &ev)
 #endif
 
   if (ev.window == vt) {
-    if (HOOK_INVOKE((this, HOOK_BUTTON_RELEASE, DT_XEVENT, &ev, DT_END)))
-      return;
+    // if (HOOK_INVOKE((this, HOOK_BUTTON_RELEASE, DT_XEVENT, &ev, DT_END)))
+    //   return;
 
 #if ISO_14755
     // 5.4
@@ -2014,9 +2024,9 @@ rxvt_term::cmd_parse()
 
           // scr_add_lines only works for nlines <= nrow - 1.
           if (nlines >= nrow - 1) {
-            if (!(SHOULD_INVOKE(HOOK_ADD_LINES)
-                  && HOOK_INVOKE((this, HOOK_ADD_LINES, DT_WCS_LEN, buf, str - buf, DT_END))))
-              scr_add_lines(buf, str - buf, nlines);
+            // if (!(SHOULD_INVOKE(HOOK_ADD_LINES)
+            //       && HOOK_INVOKE((this, HOOK_ADD_LINES, DT_WCS_LEN, buf, str - buf, DT_END))))
+            //   scr_add_lines(buf, str - buf, nlines);
 
             nlines = 0;
             str = buf;
@@ -2036,8 +2046,8 @@ rxvt_term::cmd_parse()
         ch = next_char();
       }
 
-      if (!(SHOULD_INVOKE(HOOK_ADD_LINES)
-            && HOOK_INVOKE((this, HOOK_ADD_LINES, DT_WCS_LEN, buf, str - buf, DT_END))))
+      // if (!(SHOULD_INVOKE(HOOK_ADD_LINES)
+      //       && HOOK_INVOKE((this, HOOK_ADD_LINES, DT_WCS_LEN, buf, str - buf, DT_END))))
         scr_add_lines(buf, str - buf, nlines);
 
       /*
@@ -3198,8 +3208,8 @@ void rxvt_term::process_xterm_seq(int op, char *str, string_term &st)
 
   assert(str != NULL);
 
-  if (HOOK_INVOKE((this, HOOK_OSC_SEQ, DT_INT, op, DT_STR, str, DT_END)))
-    return;
+  // if (HOOK_INVOKE((this, HOOK_OSC_SEQ, DT_INT, op, DT_STR, str, DT_END)))
+  //   return;
 
   switch (op) {
     case XTerm_name:
@@ -3825,8 +3835,8 @@ void rxvt_term::tt_printf(const char *fmt, ...)
 /* Write data to the pty as typed by the user. */
 void rxvt_term::tt_write_user_input(const char *data, unsigned int len)
 {
-  if (HOOK_INVOKE((this, HOOK_TT_WRITE, DT_STR_LEN, data, len, DT_END)))
-    return;
+  // if (HOOK_INVOKE((this, HOOK_TT_WRITE, DT_STR_LEN, data, len, DT_END)))
+  //   return;
 
   if (option(Opt_scrollTtyKeypress))
     if (view_start) {
@@ -3839,8 +3849,8 @@ void rxvt_term::tt_write_user_input(const char *data, unsigned int len)
 
 void rxvt_term::tt_write(const char *data, unsigned int len)
 {
-  if (HOOK_INVOKE((this, HOOK_TT_WRITE, DT_STR_LEN, data, len, DT_END)))
-    return;
+  // if (HOOK_INVOKE((this, HOOK_TT_WRITE, DT_STR_LEN, data, len, DT_END)))
+  //   return;
 
   tt_write_(data, len);
 }

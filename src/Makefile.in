@@ -12,7 +12,6 @@ man3dir = @mandir@/man3
 man3ext = 3
 PODOPTS = quotes => q<"> , center => q<RXVT-UNICODE>, release => q<$(VERSION)>
 CXX = @CXX@
-PERL = @PERL@
 INSTALL = @INSTALL@
 INSTALL_PROGRAM = @INSTALL@ -m 755
 INSTALL_DATA = @INSTALL@ -m 644
@@ -26,8 +25,6 @@ XLIB = @X_LIBS@ -lX11 @X_EXTRA_LIBS@ @PIXBUF_LIBS@ @STARTUP_NOTIFICATION_LIBS@
 COMPILE = $(CXX) -I.. -I$(srcdir) -I. -I$(srcdir)/../libev $(DEFS) $(CPPFLAGS) $(CXXFLAGS) $(XINC)
 LINK = @LINKER@ $(LDFLAGS)
 EXEEXT = @EXEEXT@
-PERLFLAGS = @PERLFLAGS@
-PERLLIB = @PERLLIB@
 
 srcdir = @srcdir@
 VPATH = @srcdir@
@@ -40,7 +37,7 @@ COMMON = \
 	screen.o scrollbar.o scrollbar-plain.o \
 	xdefaults.o encoding.o \
 	rxvttoolkit.o rxvtutil.o keyboard.o rxvtimg.o \
-	ev_cpp.o @PERL_O@
+	ev_cpp.o
 
 COMMON_DAEMON = rxvtdaemon.o
 
@@ -65,10 +62,10 @@ RCLOCK_BINNAME=$(DESTDIR)$(bindir)/urclock$(EXEEXT)
 all: allbin
 
 rxvt: rxvt.o $(COMMON)
-	$(LINK) -o $@ rxvt.o $(COMMON) $(LIBS) $(XLIB) $(PERLLIB)
+	$(LINK) -o $@ rxvt.o $(COMMON) $(LIBS) $(XLIB)
 
 rxvtd: rxvtd.o $(COMMON) $(COMMON_DAEMON)
-	$(LINK) -o $@ rxvtd.o $(COMMON) $(COMMON_DAEMON) $(LIBS) $(XLIB) $(PERLLIB)
+	$(LINK) -o $@ rxvtd.o $(COMMON) $(COMMON_DAEMON) $(LIBS) $(XLIB)
 
 rxvtc: rxvtc.o $(COMMON_DAEMON)
 	$(LINK) -o $@ rxvtc.o $(COMMON_DAEMON) $(LIBS)
@@ -89,7 +86,7 @@ allbin: rxvt rxvtd rxvtc rclock
 alldoc:
 
 clean:
-	rm -f rxvt rxvtc rxvtd rclock perlxsi.c rxvtperl.C manlst mantmp
+	rm -f rxvt rxvtc rxvtd rclock manlst mantmp
 	rm -f *.o
 
 distclean: clean
@@ -100,32 +97,6 @@ realclean: distclean
 
 cleandir: realclean
 
-install-perl:
-@IF_PERL@	$(INSTALL) -d $(DESTDIR)$(libdir)
-@IF_PERL@	$(INSTALL) -d $(DESTDIR)$(libdir)/urxvt
-@IF_PERL@	$(INSTALL) -d $(DESTDIR)$(libdir)/urxvt/perl
-@IF_PERL@	$(INSTALL) -d $(DESTDIR)$(man1dir)
-@IF_PERL@	$(INSTALL) -d $(DESTDIR)$(man3dir)
-@IF_PERL@	$(INSTALL_DATA) $(srcdir)/urxvt.pm $(DESTDIR)$(libdir)/urxvt/urxvt.pm
-@IF_PERL@	for ext in $(srcdir)/perl/*; do \
-@IF_PERL@	   test -f "$$ext" || continue; \
-@IF_PERL@	   base=`basename "$$ext"`; \
-@IF_PERL@	   $(INSTALL_DATA) "$$ext" $(DESTDIR)$(libdir)/urxvt/perl/; \
-@IF_PERL@	   < "$$ext" \
-@IF_PERL@	   $(PERL) -MPod::Man -e '(new Pod::Man name => "'urxvt-$$base'", $(PODOPTS))->parse_from_file' \
-@IF_PERL@	   > mantmp; \
-@IF_PERL@	   test -s mantmp && $(INSTALL_DATA) mantmp $(DESTDIR)$(man1dir)/$(RXVTNAME)-$$base.$(man1ext); \
-@IF_PERL@	   < "$$ext" $(PERL) -ne '<>, (print <> . "\n"), exit if /^=head1/' >&3; \
-@IF_PERL@	done 3>manlst
-@IF_PERL@	cat $(srcdir)/../doc/extensions.pod.top manlst $(srcdir)/../doc/extensions.pod.bot | \
-@IF_PERL@	$(PERL) -MPod::Man -e '(new Pod::Man name => "$(RXVTNAME)-extensions", $(PODOPTS))->parse_from_file' \
-@IF_PERL@	> mantmp
-@IF_PERL@	$(INSTALL_DATA) mantmp $(DESTDIR)$(man1dir)/$(RXVTNAME)-extensions.$(man1ext)
-@IF_PERL@	< $(srcdir)/urxvt.pm \
-@IF_PERL@	$(PERL) -MPod::Man -e '(new Pod::Man name => "$(RXVTNAME)perl", section => 3, $(PODOPTS))->parse_from_file' \
-@IF_PERL@	> mantmp
-@IF_PERL@	$(INSTALL_DATA) mantmp $(DESTDIR)$(man3dir)/$(RXVTNAME)perl.$(man3ext)
-
 install-bin: allbin
 	$(INSTALL) -d $(DESTDIR)$(bindir)
 	$(INSTALL_PROGRAM) rxvt  $(RXVT_BINNAME)
@@ -133,16 +104,7 @@ install-bin: allbin
 	$(INSTALL_PROGRAM) rxvtd $(RXVTD_BINNAME)
 	$(INSTALL_PROGRAM) rclock $(RCLOCK_BINNAME)
 
-install: install-bin install-perl
-
-perlxsi.c: Makefile
-	$(PERL) -MExtUtils::Embed -e xsinit -- -std urxvt
-
-rxvtperl.C: rxvtperl.xs iom_perl.h iom_perl.xs typemap typemap.iom
-	PERL="$(PERL)" $(PERL) @PERLPRIVLIBEXP@/ExtUtils/xsubpp -C++ -typemap @PERLPRIVLIBEXP@/ExtUtils/typemap -typemap 'typemap.iom' -typemap 'typemap' -prototypes $(srcdir)/rxvtperl.xs >$@
-
-rxvtperl.o: rxvtperl.C perlxsi.c
-	$(COMPILE) $(PERLFLAGS) -DLIBDIR="\"$(libdir)/urxvt\"" -c $<
+install: install-bin
 
 depend:
 	makedepend -f Makefile.in -I. -I.. -I../libev -Y *.C *.xs >/dev/null 2>&1
@@ -157,7 +119,7 @@ ev_cpp.o: ../libev/ev_poll.c ../libev/ev_port.c ../libev/ev_select.c ../libev/ev
 command.o: ../config.h rxvt.h feature.h ecb.h encoding.h rxvtutil.h estl.h
 command.o: emman.h rxvtfont.h rxvttoolkit.h ev_cpp.h ../config.h
 command.o: ../libev/ev++.h ../libev/ev.h callback.h rxvtimg.h scrollbar.h
-command.o: rxvtperl.h hookinc.h rsinc.h optinc.h version.h command.h
+command.o: hookinc.h rsinc.h optinc.h version.h command.h
 command.o: keyboard.h
 encoding.o: ../config.h encoding.h rxvtutil.h ecb.h estl.h emman.h
 encoding.o: table/iso8859_1.h table/iso8859_15.h table/iso8859_2.h
@@ -178,68 +140,58 @@ ev_cpp.o: ev_cpp.h ../config.h ../libev/ev++.h ../libev/ev.h ../libev/ev.c
 ev_cpp.o: ../libev/ev_vars.h ../libev/ev_epoll.c ../libev/ev_select.c
 init.o: ../config.h rxvt.h feature.h ecb.h encoding.h rxvtutil.h estl.h
 init.o: emman.h rxvtfont.h rxvttoolkit.h ev_cpp.h ../config.h ../libev/ev++.h
-init.o: ../libev/ev.h callback.h rxvtimg.h scrollbar.h rxvtperl.h hookinc.h
+init.o: ../libev/ev.h callback.h rxvtimg.h scrollbar.h hookinc.h
 init.o: rsinc.h optinc.h init.h keyboard.h
 keyboard.o: ../config.h rxvt.h feature.h ecb.h encoding.h rxvtutil.h estl.h
 keyboard.o: emman.h rxvtfont.h rxvttoolkit.h ev_cpp.h ../config.h
 keyboard.o: ../libev/ev++.h ../libev/ev.h callback.h rxvtimg.h scrollbar.h
-keyboard.o: rxvtperl.h hookinc.h rsinc.h optinc.h keyboard.h
+keyboard.o: hookinc.h rsinc.h optinc.h keyboard.h
 main.o: ../config.h rxvt.h feature.h ecb.h encoding.h rxvtutil.h estl.h
 main.o: emman.h rxvtfont.h rxvttoolkit.h ev_cpp.h ../config.h ../libev/ev++.h
-main.o: ../libev/ev.h callback.h rxvtimg.h scrollbar.h rxvtperl.h hookinc.h
+main.o: ../libev/ev.h callback.h rxvtimg.h scrollbar.h hookinc.h
 main.o: rsinc.h optinc.h init.h keyboard.h
 misc.o: ../config.h rxvt.h feature.h ecb.h encoding.h rxvtutil.h estl.h
 misc.o: emman.h rxvtfont.h rxvttoolkit.h ev_cpp.h ../config.h ../libev/ev++.h
-misc.o: ../libev/ev.h callback.h rxvtimg.h scrollbar.h rxvtperl.h hookinc.h
+misc.o: ../libev/ev.h callback.h rxvtimg.h scrollbar.h hookinc.h
 misc.o: rsinc.h optinc.h
 rclock.o: ecb.h version.h
 rxvt.o: ../config.h rxvt.h feature.h ecb.h encoding.h rxvtutil.h estl.h
 rxvt.o: emman.h rxvtfont.h rxvttoolkit.h ev_cpp.h ../config.h ../libev/ev++.h
-rxvt.o: ../libev/ev.h callback.h rxvtimg.h scrollbar.h rxvtperl.h hookinc.h
+rxvt.o: ../libev/ev.h callback.h rxvtimg.h scrollbar.h hookinc.h
 rxvt.o: rsinc.h optinc.h
 rxvtc.o: ../config.h rxvtdaemon.h rxvtutil.h ecb.h estl.h emman.h
 rxvtd.o: ../config.h rxvt.h feature.h ecb.h encoding.h rxvtutil.h estl.h
 rxvtd.o: emman.h rxvtfont.h rxvttoolkit.h ev_cpp.h ../config.h
 rxvtd.o: ../libev/ev++.h ../libev/ev.h callback.h rxvtimg.h scrollbar.h
-rxvtd.o: rxvtperl.h hookinc.h rsinc.h optinc.h rxvtdaemon.h
+rxvtd.o: hookinc.h rsinc.h optinc.h rxvtdaemon.h
 rxvtdaemon.o: rxvtdaemon.h rxvtutil.h ecb.h estl.h emman.h
 rxvtfont.o: ../config.h rxvt.h feature.h ecb.h encoding.h rxvtutil.h estl.h
 rxvtfont.o: emman.h rxvtfont.h rxvttoolkit.h ev_cpp.h ../config.h
 rxvtfont.o: ../libev/ev++.h ../libev/ev.h callback.h rxvtimg.h scrollbar.h
-rxvtfont.o: rxvtperl.h hookinc.h rsinc.h optinc.h table/linedraw.h
+rxvtfont.o: hookinc.h rsinc.h optinc.h table/linedraw.h
 rxvtimg.o: ../config.h rxvt.h feature.h ecb.h encoding.h rxvtutil.h estl.h
 rxvtimg.o: emman.h rxvtfont.h rxvttoolkit.h ev_cpp.h ../config.h
 rxvtimg.o: ../libev/ev++.h ../libev/ev.h callback.h rxvtimg.h scrollbar.h
-rxvtimg.o: rxvtperl.h hookinc.h rsinc.h optinc.h
-rxvtperl.o: ../config.h ev_cpp.h ../config.h ../libev/ev++.h ../libev/ev.h
-rxvtperl.o: rxvt.h feature.h ecb.h encoding.h rxvtutil.h estl.h emman.h
-rxvtperl.o: rxvtfont.h rxvttoolkit.h callback.h rxvtimg.h scrollbar.h
-rxvtperl.o: rxvtperl.h hookinc.h rsinc.h optinc.h keyboard.h perlxsi.c
-rxvtperl.o: iom_perl.h
+rxvtimg.o: hookinc.h rsinc.h optinc.h
 rxvttoolkit.o: ../config.h rxvt.h feature.h ecb.h encoding.h rxvtutil.h
 rxvttoolkit.o: estl.h emman.h rxvtfont.h rxvttoolkit.h ev_cpp.h ../config.h
 rxvttoolkit.o: ../libev/ev++.h ../libev/ev.h callback.h rxvtimg.h scrollbar.h
-rxvttoolkit.o: rxvtperl.h hookinc.h rsinc.h optinc.h
+rxvttoolkit.o: hookinc.h rsinc.h optinc.h
 rxvtutil.o: emman.c emman.h ecb.h rxvtutil.h estl.h
 screen.o: ../config.h rxvt.h feature.h ecb.h encoding.h rxvtutil.h estl.h
 screen.o: emman.h rxvtfont.h rxvttoolkit.h ev_cpp.h ../config.h
 screen.o: ../libev/ev++.h ../libev/ev.h callback.h rxvtimg.h scrollbar.h
-screen.o: rxvtperl.h hookinc.h rsinc.h optinc.h
+screen.o: hookinc.h rsinc.h optinc.h
 scrollbar-plain.o: ../config.h rxvt.h feature.h ecb.h encoding.h rxvtutil.h
 scrollbar-plain.o: estl.h emman.h rxvtfont.h rxvttoolkit.h ev_cpp.h
 scrollbar-plain.o: ../config.h ../libev/ev++.h ../libev/ev.h callback.h
-scrollbar-plain.o: rxvtimg.h scrollbar.h rxvtperl.h hookinc.h rsinc.h
+scrollbar-plain.o: rxvtimg.h scrollbar.h hookinc.h rsinc.h
 scrollbar-plain.o: optinc.h
 scrollbar.o: ../config.h rxvt.h feature.h ecb.h encoding.h rxvtutil.h estl.h
 scrollbar.o: emman.h rxvtfont.h rxvttoolkit.h ev_cpp.h ../config.h
 scrollbar.o: ../libev/ev++.h ../libev/ev.h callback.h rxvtimg.h scrollbar.h
-scrollbar.o: rxvtperl.h hookinc.h rsinc.h optinc.h
+scrollbar.o: hookinc.h rsinc.h optinc.h
 xdefaults.o: ../config.h rxvt.h feature.h ecb.h encoding.h rxvtutil.h estl.h
 xdefaults.o: emman.h rxvtfont.h rxvttoolkit.h ev_cpp.h ../config.h
 xdefaults.o: ../libev/ev++.h ../libev/ev.h callback.h rxvtimg.h scrollbar.h
-xdefaults.o: rxvtperl.h hookinc.h rsinc.h optinc.h version.h keyboard.h
-rxvtperl.o: ../config.h ev_cpp.h ../config.h ../libev/ev++.h ../libev/ev.h
-rxvtperl.o: rxvt.h feature.h ecb.h encoding.h rxvtutil.h estl.h emman.h
-rxvtperl.o: rxvtfont.h rxvttoolkit.h callback.h rxvtimg.h scrollbar.h
-rxvtperl.o: rxvtperl.h hookinc.h rsinc.h optinc.h keyboard.h perlxsi.c
-rxvtperl.o: iom_perl.h
+xdefaults.o: hookinc.h rsinc.h optinc.h version.h keyboard.h
