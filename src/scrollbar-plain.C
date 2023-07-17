@@ -28,7 +28,6 @@
 
 int scrollBar_t::show_plain(int update)
 {
-  int xsb = 0;
   int sbwidth = width - 1;
 
   if (!init) {
@@ -40,8 +39,6 @@ int scrollBar_t::show_plain(int update)
     pscrollbarGC = XCreateGC(term->dpy, win, GCForeground, &gcvalue);
   }
 
-  xsb = term->option(Opt_scrollBar_right) ? 1 : 0;
-
   if (update) {
     if (last_top < top)
       XClearArea(term->dpy, win, 0, last_top, sbwidth + 1, top - last_top, False);
@@ -52,7 +49,7 @@ int scrollBar_t::show_plain(int update)
     XClearWindow(term->dpy, win);
 
   /* scrollbar slider */
-  XFillRectangle(term->dpy, win, pscrollbarGC, 1 - xsb, top, sbwidth, bot - top);
+  XFillRectangle(term->dpy, win, pscrollbarGC, 0, top, sbwidth, bot - top);
 
   return 1;
 }

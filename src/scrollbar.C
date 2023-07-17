@@ -51,10 +51,7 @@ void scrollBar_t::map(int map)
 void scrollBar_t::resize()
 {
   int delayed_init = 0;
-  int window_sb_x = 0;
-
-  if (term->option(Opt_scrollBar_right))
-    window_sb_x = term->szHint.width - total_width();
+  int window_sb_x = term->szHint.width - total_width();
 
   update_data();
 
@@ -115,7 +112,6 @@ void scrollBar_t::setup(rxvt_term *term)
 
   this->term = term;
   scrollalign = term->rs[Rs_scrollBar_align];
-  // scrollstyle = term->rs[Rs_scrollstyle];
   thickness = term->rs[Rs_scrollBar_thickness];
 
   width = SB_WIDTH_PLAIN;

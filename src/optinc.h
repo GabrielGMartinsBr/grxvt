@@ -8,7 +8,6 @@
  def(reverseVideo)
  def(utmpInhibit)
  def(scrollBar)
- def(scrollBar_right)
  def(scrollBar_floating)
  def(meta8)
  def(scrollTtyOutput)
