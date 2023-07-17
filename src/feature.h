@@ -99,7 +99,7 @@
  * with various KeySyms (0xFF00 - 0xFFFF).
  * Required by perl.
  */
-#if ENABLE_FRILLS || ENABLE_PERL
+#if ENABLE_FRILLS
 # define KEYSYM_RESOURCE
 #endif
 

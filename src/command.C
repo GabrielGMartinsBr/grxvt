@@ -833,7 +833,7 @@ rxvt_term::key_press(XKeyEvent &ev)
 void ecb_cold
 rxvt_term::key_release(XKeyEvent &ev)
 {
-#if (MOUSE_WHEEL && MOUSE_SLIP_WHEELING) || ISO_14755 || ENABLE_PERL
+#if (MOUSE_WHEEL && MOUSE_SLIP_WHEELING) || ISO_14755
   KeySym keysym;
 
   keysym = XLookupKeysym(&ev, ev.state & ShiftMask ? 1 : 0);  // sorry, only shift supported :/
@@ -1657,32 +1657,6 @@ rxvt_term::update_fade_color(unsigned int idx, bool first_time)
   }
 #endif
 }
-
-#if ENABLE_PERL
-void ecb_hot
-rxvt_term::rootwin_cb(XEvent &ev)
-{
-  make_current();
-
-  if (SHOULD_INVOKE(HOOK_ROOT_EVENT) && HOOK_INVOKE((this, HOOK_ROOT_EVENT, DT_XEVENT, &ev, DT_END)))
-    return;
-
-  switch (ev.type) {
-    case PropertyNotify:
-      /*
-       * if user used some Esetroot compatible prog to set the root bg,
-       * use the property to determine the pixmap.  We use it later on.
-       */
-      if (ev.xproperty.atom == xa[XA_XROOTPMAP_ID] || ev.xproperty.atom == xa[XA_ESETROOT_PMAP_ID]) {
-        HOOK_INVOKE((this, HOOK_ROOTPMAP_CHANGE, DT_END));
-      }
-
-      break;
-  }
-
-  refresh_check();
-}
-#endif
 
 void rxvt_term::button_press(XButtonEvent &ev)
 {
@@ -3392,11 +3366,6 @@ void rxvt_term::process_xterm_seq(int op, char *str, string_term &st)
     break;
 #endif
 
-#if ENABLE_PERL
-    case URxvt_perl:
-      HOOK_INVOKE((this, HOOK_OSC_SEQ_PERL, DT_STR, str, DT_STR, st.v, DT_END));
-      break;
-#endif
   }
 }
 /*----------------------------------------------------------------------*/

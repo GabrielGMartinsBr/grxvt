@@ -585,14 +585,6 @@ void rxvt_term::init_vars()
   set_option(Opt_buffered);
 }
 
-#if ENABLE_PERL
-static void
-rxvt_perl_parse_resource(rxvt_term *term, const char *k, const char *v)
-{
-  rxvt_perl.parse_resource(term, k, false, false, 0, v);
-}
-#endif
-
 /*----------------------------------------------------------------------*/
 const char **
 rxvt_term::init_resources(int argc, const char *const *argv)
@@ -630,17 +622,6 @@ rxvt_term::init_resources(int argc, const char *const *argv)
   for (int i = NUM_RESOURCES; i--;)
     if (rs[i] == resval_undef)
       rs[i] = 0;
-
-#if ENABLE_PERL
-  if (!rs[Rs_perl_ext_1])
-    rs[Rs_perl_ext_1] = "default";
-
-  if ((rs[Rs_perl_ext_1] && *rs[Rs_perl_ext_1]) || (rs[Rs_perl_ext_2] && *rs[Rs_perl_ext_2]) || (rs[Rs_perl_eval] && *rs[Rs_perl_eval])) {
-    rxvt_perl.init(this);
-    enumerate_resources(rxvt_perl_parse_resource);
-    HOOK_INVOKE((this, HOOK_INIT, DT_END));
-  }
-#endif
 
   // must be called after initialising the perl interpreter as it
   // may invoke the `on_register_command' hook
@@ -789,20 +770,7 @@ void rxvt_term::init(stringvec *argv, stringvec *envv)
 
 void rxvt_term::init(int argc, const char *const *argv, const char *const *envv)
 {
-#if ENABLE_PERL
-  // perl might want to access the stringvecs later, so we need to copy them
-  stringvec *args = new stringvec;
-  for (int i = 0; i < argc; i++)
-    args->push_back(strdup(argv[i]));
-
-  stringvec *envs = new stringvec;
-  for (const char *const *var = envv; *var; var++)
-    envs->push_back(strdup(*var));
-
-  init(args, envs);
-#else
   init2(argc, argv);
-#endif
 }
 
 void rxvt_term::init2(int argc, const char *const *argv)
@@ -862,10 +830,6 @@ void rxvt_term::init2(int argc, const char *const *argv)
 
   if (option(Opt_scrollBar))
     scrollBar.resize(); /* create and map scrollbar */
-
-#if ENABLE_PERL
-  rootwin_ev.start(display, display->root);
-#endif
 
   init_done = 1;
 

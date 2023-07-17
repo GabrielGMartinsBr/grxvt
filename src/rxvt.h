@@ -47,14 +47,10 @@ typedef int32_t tlen_t_;  // specifically for use in the line_t structure
 
 #include "feature.h"
 
-#if defined(ISO_14755) || defined(ENABLE_PERL)
+#if defined(ISO_14755)
 #define ENABLE_OVERLAY 1
 #endif
 
-#if ENABLE_PERL
-#define ENABLE_FRILLS 1
-#define ENABLE_COMBINING 1
-#endif
 
 #if ENABLE_FRILLS
 #define ENABLE_XEMBED 1
@@ -185,11 +181,7 @@ extern char **rxvt_environ;  // the original environ pointer
 static inline void
 set_environ(char **envv)
 {
-#if ENABLE_PERL
-  assert(envv);
-#else
   if (envv)
-#endif
   environ = envv;
 }
 
@@ -761,9 +753,7 @@ struct line_t {
 
   void touch()  // call whenever a line is changed/touched/updated
   {
-#if ENABLE_PERL
-    f &= ~LINE_FILTERED;
-#endif
+
   }
 
   void touch(int col)
@@ -793,13 +783,8 @@ struct mbstate {
 #define COMPOSE_HI 0x1fffffUL
 #define IS_COMPOSE(n) ((int32_t)(n) >= COMPOSE_LO)
 #else
-#if ENABLE_PERL
-#define COMPOSE_LO 0xe000UL  // our _own_ functions don't like (illegal) surrogates
-#define COMPOSE_HI 0xf8ffUL  // in utf-8, so use private use area only
-#else
 #define COMPOSE_LO 0xd800UL
 #define COMPOSE_HI 0xf8ffUL
-#endif
 #define IS_COMPOSE(n) IN_RANGE_INC((n), COMPOSE_LO, COMPOSE_HI)
 #endif
 
@@ -1093,9 +1078,6 @@ struct rxvt_term : zero_initialized, rxvt_vars, rxvt_screen {
 
   log_callback *log_hook;      // log error messages through this hook, if != 0
   getfd_callback *getfd_hook;  // convert remote to local fd, if != 0
-#if ENABLE_PERL
-  rxvt_perl_term perl;
-#endif
   struct mbstate mbstate;  // current input multibyte state
 
   unsigned char want_refresh : 1,
@@ -1253,11 +1235,6 @@ struct rxvt_term : zero_initialized, rxvt_vars, rxvt_screen {
   {
     XSelectInput(dpy, vt, vt_emask | vt_emask_perl | vt_emask_xim | vt_emask_mouse);
   }
-
-#if ENABLE_PERL
-  void rootwin_cb(XEvent &xev);
-  xevent_watcher rootwin_ev;
-#endif
 
   void x_cb(XEvent &xev);
   xevent_watcher termwin_ev;

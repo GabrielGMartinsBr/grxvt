@@ -254,12 +254,6 @@ static const struct
 #if ENABLE_FRILLS
               STRG (Rs_rewrapMode, "rewrapMode", "rm", "string", "rewrap mode (auto, always, never)"),
 #endif
-#if ENABLE_PERL
-              RSTRG (Rs_perl_lib, "perl-lib", "string"), //, "colon-separated directories with extension scripts"),TODO
-              RSTRG (Rs_perl_eval, "perl-eval", "perl-eval"), // "string", "code to be evaluated after all extensions have been loaded"),TODO
-              RSTRG (Rs_perl_ext_1, "perl-ext-common", "string"), //, "colon-separated list of perl extensions to enable"),TODO
-              STRG (Rs_perl_ext_2, "perl-ext", "pe", "string", "colon-separated list of perl extensions to enable for this instance"),
-#endif
 #if ISO_14755
               BOOL (Rs_iso14755, "iso14755", NULL, Opt_iso14755, 0, NULL),
               BOOL (Rs_iso14755_52, "iso14755_52", NULL, Opt_iso14755_52, 0, NULL),
@@ -282,9 +276,6 @@ static const struct
 
 static const char releasestring[] = "rxvt-unicode (" RXVTNAME ") v" VERSION " - released: " DATE "\n";
 static const char optionsstring[] = "options: "
-#if ENABLE_PERL
-                                    "perl,"
-#endif
 #if XFT
                                     "xft,"
 #endif
@@ -430,11 +421,6 @@ rxvt_term::rxvt_usage (int type)
                          optList[i].desc);
             }
 
-#if ENABLE_PERL
-        rxvt_perl.init (this);
-        rxvt_perl.usage (this, 1);
-#endif
-
         rxvt_log ("\n  --help to list long-options");
         break;
 
@@ -448,11 +434,6 @@ rxvt_term::rxvt_usage (int type)
                     optList[i].kw,
                     (INDENT + 2 - strlen (optList[i].kw)), "", /* XXX */
                     (optList_isBool (i) ? "boolean" : optList[i].arg));
-
-#if ENABLE_PERL
-        rxvt_perl.init (this);
-        rxvt_perl.usage (this, 2);
-#endif
 
         rxvt_log ("\n  -help to list options");
         break;
@@ -571,28 +552,8 @@ rxvt_term::get_options (int argc, const char *const *argv)
         }
       else
         {
-#if ENABLE_PERL
-          rxvt_perl.init (this);
-
-          if (int flags = rxvt_perl.parse_resource (this, opt, true, longopt, flag, argv [i + 1]))
-            {
-              if (flags & rxvt_perl.RESOURCE_ARG)
-                {
-                  if (i + 1 == argc)
-                    {
-                      rxvt_warn ("option '%s' requires an argument.\n", argv [i]);
-                      bad_option = 1;
-                    }
-                  else
-                    ++i;
-                }
-            }
-          else
-#endif
-            {
               rxvt_warn ("\"%s\": unknown or malformed option.\n", opt);
               bad_option = 1;
-            }
         }
     }
 

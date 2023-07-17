@@ -69,7 +69,7 @@ static const char *const xa_names[] = {
   "WM_LOCALE_NAME",
   "XIM_SERVERS",
 #endif
-#if HAVE_IMG || ENABLE_PERL
+#if HAVE_IMG
   "_XROOTPMAP_ID",
   "ESETROOT_PMAP_ID",
 #endif
@@ -974,12 +974,6 @@ void rxvt_selection::finish(char *data, unsigned int len)
     term->selection_req = 0;
     delete this;
   }
-#if ENABLE_PERL
-  else {
-    stop();  // we do not really trust perl callbacks
-    rxvt_perl.selection_finish(this, data, len);
-  }
-#endif
 }
 
 bool rxvt_selection::request(Atom target, int selnum)
