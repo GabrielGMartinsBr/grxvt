@@ -1449,10 +1449,10 @@ Optional Packages:
   --without-PACKAGE       do not use PACKAGE (same as --with-PACKAGE=no)
   --with-codesets=CS,...  compile in additional codesets
                           (jp,jp_ext,kr,zh,zh_ext,all)
-  --with-res-name=NAME    set the default resource name (default: grxvt)
-  --with-res-class=CLASS  set the resource class (default: GRxvt)
+  --with-res-name=NAME    set the default resource name (default: urxvt)
+  --with-res-class=CLASS  set the resource class (default: URxvt)
   --with-name=NAME        set the basename for the installed binaries
-                          (default: grxvt)
+                          (default: urxvt)
   --with-term=VALUE       set the value of the TERM environment variable
                           (default: rxvt)
   --with-terminfo=VALUE   set the value of the TERMINFO environment variable
@@ -5323,7 +5323,7 @@ printf "%s\n" "#define RESFALLBACK \"$RESFALLBACK\"" >>confdefs.h
 
 fi
 
-RESNAME=grxvt
+RESNAME=urxvt
 
 # Check whether --with-res-name was given.
 if test ${with_res_name+y}
@@ -5335,7 +5335,7 @@ fi
 printf "%s\n" "#define RESNAME \"$RESNAME\"" >>confdefs.h
 
 
-RESCLASS=GRxvt
+RESCLASS=URxvt
 
 # Check whether --with-res-class was given.
 if test ${with_res_class+y}
@@ -5347,7 +5347,7 @@ fi
 printf "%s\n" "#define RESCLASS \"$RESCLASS\"" >>confdefs.h
 
 
-RXVTNAME=grxvt
+RXVTNAME=urxvt
 
 # Check whether --with-name was given.
 if test ${with_name+y}
@@ -7724,6 +7724,7 @@ fi
 scrolltypes=plain
 
 printf "%s\n" "#define PLAIN_SCROLLBAR 1" >>confdefs.h
+
 
 
 if test x$support_pointer_blank = xyes; then

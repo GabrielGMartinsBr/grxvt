@@ -37,8 +37,8 @@ dummy:
 
 COMMON = \
 	command.o rxvtfont.o init.o main.o misc.o \
-	screen.o scrollbar.o scrollbar-next.o scrollbar-rxvt.o \
-	scrollbar-xterm.o scrollbar-plain.o xdefaults.o encoding.o \
+	screen.o scrollbar.o scrollbar-plain.o \
+	xdefaults.o encoding.o \
 	rxvttoolkit.o rxvtutil.o keyboard.o rxvtimg.o \
 	ev_cpp.o @PERL_O@
 
@@ -225,24 +225,11 @@ screen.o: ../config.h rxvt.h feature.h ecb.h encoding.h rxvtutil.h estl.h
 screen.o: emman.h rxvtfont.h rxvttoolkit.h ev_cpp.h ../config.h
 screen.o: ../libev/ev++.h ../libev/ev.h callback.h rxvtimg.h scrollbar.h
 screen.o: rxvtperl.h hookinc.h rsinc.h optinc.h
-scrollbar-next.o: ../config.h rxvt.h feature.h ecb.h encoding.h rxvtutil.h
-scrollbar-next.o: estl.h emman.h rxvtfont.h rxvttoolkit.h ev_cpp.h
-scrollbar-next.o: ../config.h ../libev/ev++.h ../libev/ev.h callback.h
-scrollbar-next.o: rxvtimg.h scrollbar.h rxvtperl.h hookinc.h rsinc.h optinc.h
 scrollbar-plain.o: ../config.h rxvt.h feature.h ecb.h encoding.h rxvtutil.h
 scrollbar-plain.o: estl.h emman.h rxvtfont.h rxvttoolkit.h ev_cpp.h
 scrollbar-plain.o: ../config.h ../libev/ev++.h ../libev/ev.h callback.h
 scrollbar-plain.o: rxvtimg.h scrollbar.h rxvtperl.h hookinc.h rsinc.h
 scrollbar-plain.o: optinc.h
-scrollbar-rxvt.o: ../config.h rxvt.h feature.h ecb.h encoding.h rxvtutil.h
-scrollbar-rxvt.o: estl.h emman.h rxvtfont.h rxvttoolkit.h ev_cpp.h
-scrollbar-rxvt.o: ../config.h ../libev/ev++.h ../libev/ev.h callback.h
-scrollbar-rxvt.o: rxvtimg.h scrollbar.h rxvtperl.h hookinc.h rsinc.h optinc.h
-scrollbar-xterm.o: ../config.h rxvt.h feature.h ecb.h encoding.h rxvtutil.h
-scrollbar-xterm.o: estl.h emman.h rxvtfont.h rxvttoolkit.h ev_cpp.h
-scrollbar-xterm.o: ../config.h ../libev/ev++.h ../libev/ev.h callback.h
-scrollbar-xterm.o: rxvtimg.h scrollbar.h rxvtperl.h hookinc.h rsinc.h
-scrollbar-xterm.o: optinc.h
 scrollbar.o: ../config.h rxvt.h feature.h ecb.h encoding.h rxvtutil.h estl.h
 scrollbar.o: emman.h rxvtfont.h rxvttoolkit.h ev_cpp.h ../config.h
 scrollbar.o: ../libev/ev++.h ../libev/ev.h callback.h rxvtimg.h scrollbar.h

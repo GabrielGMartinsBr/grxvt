@@ -107,12 +107,6 @@ struct scrollBar_t {
   // update style dependent data
   void update_data();
 
-  // scrollbar-next.C
-  int show_next(int);
-  // scrollbar-rxvt.C
-  int show_rxvt(int);
-  // scrollbar-xterm.C
-  int show_xterm(int);
   // scrollbar-plain.C
   int show_plain(int);
 
