@@ -20,28 +20,27 @@
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  *----------------------------------------------------------------------*/
 
-#include "../config.h"
-#include "rxvt.h"
-
 #include <stdlib.h>
 #include <string.h>
 
-int
-main (int argc, char *argv[])
-try
-  {
-    ptytty::init ();
-    rxvt_init ();
+#include "../config.h"
+#include "rxvt.h"
+
+int main(int argc, char *argv[])
+{
+  try {
+    ptytty::init();
+    rxvt_init();
 
     rxvt_term *t = new rxvt_term;
-    t->init (argc, argv, environ);
-    ev_run ();
+    t->init(argc, argv, environ);
+    ev_run();
 
     return EXIT_SUCCESS;
-  }
-catch (const std::exception &e)
-  {
-    fputs (e.what (), stderr);
+  } catch (const std::exception &e) {
+    fputs(e.what(), stderr);
     return EXIT_FAILURE;
   }
 
+  return 0;
+}
