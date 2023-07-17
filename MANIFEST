@@ -78,8 +78,6 @@ src/rxvtd.C
 src/rxvtdaemon.C
 src/rxvtdaemon.h
 src/screen.C
-src/scrollbar-next.C
-src/scrollbar-xterm.C
 src/scrollbar-plain.C
 src/scrollbar.C
 src/scrollbar.h

@@ -7,12 +7,9 @@
 
 struct rxvt_term;
 
-#define SB_WIDTH_NEXT 19
-#define SB_WIDTH_XTERM 15
+
 #define SB_WIDTH_PLAIN 7
-#ifndef SB_WIDTH_RXVT
-#define SB_WIDTH_RXVT 10
-#endif
+
 
 /*
  * NeXT scrollbar defines
@@ -40,12 +37,6 @@ enum sb_state {
   SB_STATE_DOWN,
 };
 
-enum sb_style {
-  SB_STYLE_NEXT = 1,
-  SB_STYLE_XTERM = 2,
-  SB_STYLE_PLAIN = 4,
-  SB_STYLE_RXVT = 8,
-};
 
 enum sb_align {
   SB_ALIGN_CENTRE,
@@ -56,12 +47,11 @@ enum sb_align {
 struct scrollBar_t {
   rxvt_term *term;
   sb_state state; /* scrollbar state                          */
-  char init;      /* scrollbar has been initialised           */
+  bool init;      /* scrollbar has been initialised           */
   int beg;        /* slider sub-window begin height           */
   int end;        /* slider sub-window end height             */
   int top;        /* slider top position                      */
   int bot;        /* slider bottom position                   */
-  sb_style style; /* style: rxvt, xterm, next                 */
   int width;      /* scrollbar width                          */
   int shadow;     /* scrollbar shadow width                   */
   int last_bot;   /* scrollbar last bottom position           */
@@ -80,23 +70,15 @@ struct scrollBar_t {
 
   bool upButton(int y)
   {
-    if (style == SB_STYLE_NEXT)
-      return y > end && y <= end + width + 1;
-    if (style == SB_STYLE_RXVT)
-      return y < beg;
     return false;
   }
   bool dnButton(int y)
   {
-    if (style == SB_STYLE_NEXT)
-      return y > end + width + 1;
-    if (style == SB_STYLE_RXVT)
-      return y > end;
     return false;
   }
   int min_height()
   {
-    return style == SB_STYLE_NEXT ? SB_THUMB_MIN_HEIGHT : 10;
+    return 10;
   }
   int size()
   {

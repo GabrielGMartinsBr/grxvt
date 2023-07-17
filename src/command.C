@@ -1871,25 +1871,12 @@ void rxvt_term::button_press(XButtonEvent &ev)
             /* FALLTHROUGH */
 
           case Button3:
-            if (scrollBar.style != SB_STYLE_XTERM) {
-              if (scrollBar.above_slider(ev.y))
-#ifdef RXVT_SCROLL_FULL
-                scr_page(UP, nrow - 1);
-#else
-                scr_page(UP, nrow / 4);
-#endif
-              else if (scrollBar.below_slider(ev.y))
-#ifdef RXVT_SCROLL_FULL
-                scr_page(DN, nrow - 1);
-#else
-                scr_page(DN, nrow / 4);
-#endif
-              else
-                scrollBar.state = SB_STATE_MOTION;
-            } else {
-              scr_page((ev.button == Button1 ? DN : UP), (nrow * scrollBar.position(ev.y) / scrollBar.size()));
-            }
-
+            if (scrollBar.above_slider(ev.y))
+              scr_page(UP, nrow / 4);
+            else if (scrollBar.below_slider(ev.y))
+              scr_page(DN, nrow / 4);
+            else
+              scrollBar.state = SB_STATE_MOTION;
             break;
         }
     }

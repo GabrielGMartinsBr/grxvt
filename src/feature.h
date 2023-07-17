@@ -219,12 +219,6 @@
 
 
 /*
- * clicking above or below the scrollbar slider (all styles minus
- * xterm) will scroll by (height - 1) rather than (height / 4).
- */
-#define RXVT_SCROLL_FULL 1
-
-/*
  * (Hops) draw an internal border line on inside edge of the rxvt scrollbar
  */
 /* #define SB_BORDER */

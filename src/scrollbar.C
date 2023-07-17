@@ -118,20 +118,10 @@ void scrollBar_t::setup(rxvt_term *term)
   // scrollstyle = term->rs[Rs_scrollstyle];
   thickness = term->rs[Rs_scrollBar_thickness];
 
-  style = SB_STYLE_PLAIN;
+  width = SB_WIDTH_PLAIN;
 
-  if (style == SB_STYLE_NEXT)
-    width = SB_WIDTH_NEXT;
-  else if (style == SB_STYLE_XTERM)
-    width = SB_WIDTH_XTERM;
-  else if (style == SB_STYLE_PLAIN)
-    width = SB_WIDTH_PLAIN;
-  else /* if (style == SB_STYLE_RXVT) */
-    width = SB_WIDTH_RXVT;
-
-  if (style != SB_STYLE_NEXT) /* dishonour request - for now */
-    if (thickness && (i = atoi(thickness)) >= SB_WIDTH_MINIMUM)
-      width = min(i, SB_WIDTH_MAXIMUM);
+  if (thickness && (i = atoi(thickness)) >= SB_WIDTH_MINIMUM)
+    width = min(i, SB_WIDTH_MAXIMUM);
 
   /* align = SB_ALIGN_CENTRE; */
   if (scrollalign) {

@@ -110,15 +110,7 @@ CONFIGURE OPTIONS
     --enable-fading (default: on)
         Add support for fading the text when focus is lost.
 
-    --enable-rxvt-scroll (default: on)
-        Add support for the original rxvt scrollbar.
-
-    --enable-next-scroll (default: on)
-        Add support for a NeXT-like scrollbar.
-
-    --enable-xterm-scroll (default: on)
-        Add support for an Xterm-like scrollbar.
-
+    
     --disable-backspace-key
         Removes any handling of the backspace key by us - let the X server
         do it.
