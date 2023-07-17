@@ -40,9 +40,7 @@
 #ifdef MOUSE_WHEEL
   def (mouseWheelScrollPage)
 #endif
-#ifndef NO_BACKSPACE_KEY
   def (backspace_key)
-#endif
 
   def (delete_key)
 

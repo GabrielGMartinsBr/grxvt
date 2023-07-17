@@ -5264,28 +5264,6 @@ then :
 fi
 
 
-# Check whether --enable-backspace-key was given.
-if test ${enable_backspace_key+y}
-then :
-  enableval=$enable_backspace_key; if test x$enableval = xno; then
-
-printf "%s\n" "#define NO_BACKSPACE_KEY 1" >>confdefs.h
-
-  fi
-fi
-
-
-# Check whether --enable-delete-key was given.
-if test ${enable_delete_key+y}
-then :
-  enableval=$enable_delete_key; if test x$enableval = xno; then
-
-printf "%s\n" "#define NO_DELETE_KEY 1" >>confdefs.h
-
-  fi
-fi
-
-
 support_resources=yes
 # Check whether --enable-resources was given.
 if test ${enable_resources+y}

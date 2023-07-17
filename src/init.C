@@ -712,13 +712,11 @@ rxvt_term::init_resources(int argc, const char *const *argv)
   if (!rs[Rs_cutchars])
     rs[Rs_cutchars] = CUTCHARS;
 
-#ifndef NO_BACKSPACE_KEY
   if (!rs[Rs_backspace_key])
 #ifdef DEFAULT_BACKSPACE
     rs[Rs_backspace_key] = DEFAULT_BACKSPACE;
 #else
     rs[Rs_backspace_key] = "DEC"; /* can toggle between \010 or \177 */
-#endif
 #endif
 
   if (!rs[Rs_delete_key])
@@ -1068,10 +1066,8 @@ void rxvt_term::init_command(const char *const *argv)
   if (!option(Opt_jumpScroll))
     priv_modes |= PrivMode_smoothScroll;
 
-#ifndef NO_BACKSPACE_KEY
   if (strcmp(rs[Rs_backspace_key], "DEC") == 0)
     priv_modes |= PrivMode_HaveBackSpace;
-#endif
 
   /* add value for scrollBar */
   if (scrollBar.state) {
@@ -1456,12 +1452,10 @@ void rxvt_term::run_command(const char *const *argv)
 
   struct termios tio = def_tio;
 
-#ifndef NO_BACKSPACE_KEY
   if (rs[Rs_backspace_key][0] && !rs[Rs_backspace_key][1])
     tio.c_cc[VERASE] = rs[Rs_backspace_key][0];
   else if (strcmp(rs[Rs_backspace_key], "DEC") == 0)
     tio.c_cc[VERASE] = '\177'; /* the initial state anyway */
-#endif
 
   /* init terminal attributes */
   cfsetospeed(&tio, BAUDRATE);

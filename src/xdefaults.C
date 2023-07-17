@@ -237,10 +237,8 @@ static const struct
 #ifdef POINTER_BLANK
   RSTRG(Rs_pointerBlankDelay, "pointerBlankDelay", "number"),
 #endif
-#ifndef NO_BACKSPACE_KEY
-  RSTRG(Rs_backspace_key, "backspacekey", "string"),
-#endif
 
+  RSTRG(Rs_backspace_key, "backspacekey", "string"),
   RSTRG(Rs_delete_key, "deletekey", "string"),
   
 #ifdef PRINTPIPE
@@ -335,9 +333,7 @@ static const char optionsstring[] = "options: "
 #if defined(USE_XIM)
                                     "XIM,"
 #endif
-#if defined(NO_BACKSPACE_KEY)
-                                    "no_backspace,"
-#endif
+
 
 #if EIGHT_BIT_CONTROLS
                                     "8bitctrls,"

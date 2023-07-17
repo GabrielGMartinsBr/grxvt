@@ -297,19 +297,6 @@ AC_ARG_ENABLE(xim,
     support_xim=$enableval
   fi])
 
-AC_ARG_ENABLE(backspace-key,
-  [AS_HELP_STRING([--disable-backspace-key],
-     [disable handling of the backspace key])],
-  [if test x$enableval = xno; then
-    AC_DEFINE(NO_BACKSPACE_KEY, 1, Define if you don't want support for the backspace key)
-  fi])
-
-AC_ARG_ENABLE(delete-key,
-  [AS_HELP_STRING([--disable-delete-key],
-     [disable handling of the delete key])],
-  [if test x$enableval = xno; then
-    AC_DEFINE(NO_DELETE_KEY, 1, Define if you don't want support for the (non-keypad) delete key)
-  fi])
 
 support_resources=yes
 AC_ARG_ENABLE(resources,

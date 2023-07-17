@@ -521,7 +521,6 @@ rxvt_term::key_press(XKeyEvent &ev)
       keysym = translate_keypad(keysym, kp);
 
       switch (keysym) {
-#ifndef NO_BACKSPACE_KEY
         case XK_BackSpace:
           if (priv_modes & PrivMode_HaveBackSpace) {
             kbuf[0] = (!!(priv_modes & PrivMode_BackSpace)
@@ -532,7 +531,6 @@ rxvt_term::key_press(XKeyEvent &ev)
           } else
             strcpy(kbuf, rs[Rs_backspace_key]);
           break;
-#endif
         case XK_Delete:
           strcpy(kbuf, rs[Rs_delete_key]);
           break;
@@ -3474,9 +3472,7 @@ void rxvt_term::process_terminal_mode(int mode, int priv ecb_unused, unsigned in
     // 46 start logging
     { 47, PrivMode_Screen },
     { 66, PrivMode_aplKP },  // DECNKM
-#ifndef NO_BACKSPACE_KEY
     { 67, PrivMode_BackSpace },  // DECBKM
-#endif
     { 1000, PrivMode_MouseX11 },
     { 1002, PrivMode_MouseBtnEvent },
     { 1003, PrivMode_MouseAnyEvent },
