@@ -362,10 +362,8 @@ translate_keypad(KeySym keysym, bool kp)
     keysym = kp ? keypadtrans[index] : XK_Home + index;
   } else if (keysym == XK_KP_Insert)
     keysym = kp ? XK_KP_0 : XK_Insert;
-#ifndef NO_DELETE_KEY
   else if (keysym == XK_KP_Delete)
     keysym = kp ? XK_KP_Decimal : XK_Delete;
-#endif
 #endif
   return keysym;
 }
@@ -535,11 +533,10 @@ rxvt_term::key_press(XKeyEvent &ev)
             strcpy(kbuf, rs[Rs_backspace_key]);
           break;
 #endif
-#ifndef NO_DELETE_KEY
         case XK_Delete:
           strcpy(kbuf, rs[Rs_delete_key]);
           break;
-#endif
+
         case XK_Tab:
           if (shft)
             strcpy(kbuf, "\033[Z");

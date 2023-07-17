@@ -721,13 +721,11 @@ rxvt_term::init_resources(int argc, const char *const *argv)
 #endif
 #endif
 
-#ifndef NO_DELETE_KEY
   if (!rs[Rs_delete_key])
 #ifdef DEFAULT_DELETE
     rs[Rs_delete_key] = DEFAULT_DELETE;
 #else
     rs[Rs_delete_key] = "\033[3~";
-#endif
 #endif
 
   scrollBar.setup(this);

@@ -43,9 +43,9 @@
 #ifndef NO_BACKSPACE_KEY
   def (backspace_key)
 #endif
-#ifndef NO_DELETE_KEY
+
   def (delete_key)
-#endif
+
 #ifdef PRINTPIPE
   def (print_pipe)
 #endif

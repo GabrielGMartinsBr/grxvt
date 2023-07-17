@@ -205,9 +205,6 @@
 /* Define if you don't want support for the backspace key */
 #undef NO_BACKSPACE_KEY
 
-/* Define if you don't want support for the (non-keypad) delete key */
-#undef NO_DELETE_KEY
-
 /* Define if you don't want any resources read */
 #undef NO_RESOURCES
 
