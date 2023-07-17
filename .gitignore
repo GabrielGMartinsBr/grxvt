@@ -32,3 +32,5 @@ config.log
 config.status
 Makefile
 libev
+build
+doc
