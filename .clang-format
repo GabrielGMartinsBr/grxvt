@@ -1,0 +1,59 @@
+# We'll use defaults from the LLVM style, but with 4 columns indentation.
+BasedOnStyle: Google
+
+
+# ExperimentalAutoDetectBinPacking: true
+FixNamespaceComments: true
+
+---
+Language: Cpp
+Standard: Latest
+
+AlignAfterOpenBracket: BlockIndent
+# AlignAfterOpenBracket: AlwaysBreak
+# AlignAfterOpenBracket: DontAlign
+
+
+BreakBeforeBraces: WebKit
+# BreakBeforeBraces: Linux
+# BracketAlignment: BlockIndent
+
+# BreakAfterAttributes: Always
+# BracedInitializerIndentWidth: 2
+
+
+# IndentWidth: 2
+ColumnLimit: 0
+ContinuationIndentWidth: 2
+
+BreakConstructorInitializers: AfterColon
+# BreakConstructorInitializersBeforeComma: false
+# ConstructorInitializerAllOnOneLineOrOnePerLine: true
+PackConstructorInitializers: BinPack
+
+Cpp11BracedListStyle: false
+SpaceInEmptyParentheses: false
+SpaceInEmptyBlock: true
+
+BreakBeforeBinaryOperators: NonAssignment
+
+# EmptyLineBeforeAccessModifier: Leave
+
+# SpaceBeforeCtorInitializerColon: false
+# SeparateDefinitionBlocks: Always
+
+# BinPackArguments: true
+ 
+
+# BreakBeforeBraces: Custom
+# BraceWrapping:
+#   AfterControlStatement: MultiLine
+  # AfterControlStatement: MultiLine
+  # AfterClass: false
+  # AfterFunction: true
+  # BeforeElse: true
+  # BeforeLambdaBody: false
+
+
+# AllowAllParametersOfDeclarationOnNextLine: true
+# PointerAlignment: Left
