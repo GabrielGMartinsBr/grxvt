@@ -4,7 +4,7 @@ Done:
         [16/07/23] Setup compilation
         [16/07/23] Setup debug
 
-    Simplify Project
+    Simplify Project (Decrease complexity)
         [16/07/23] Make plain scrollbar the default
         [17/07/23] Remove other extras scrollbars
         [17/07/23] Put the scrollbar always on right side
@@ -12,17 +12,34 @@ Done:
         [17/07/23] Remove define NO_DELETE_KEY
         [17/07/23] Remove define NO_BACKSPACE_KEY
         [17/07/23] Remove Perl support and extensions
+        ...
+    
+    Migrate To Cmake
+        ...
 
-To Do:
+    Refactor Vital Systems
+        ...
+
+    Upgrade Cpp Version
+        ...
+
+    Add new features
+        ...
+    
+    Improve Performance
+        ...
+
+To do:
+    Restore scroll with mouse/touchpad
+    Remove non vital Macros
+    Adopt only one iso for input policy
+    Migrate project to Cmake
     Refactor code related with perl hooks
     Refactor Input method
-        - Adopt only one iso for input policy
     Refactor/Add text selection
     Refactor/Add clipboard support
     Remove Unecesary Customization options
     Refactor settings/optiins file and commands
-    Migrate project to Cmake
-    Remove non vital Macros
     Upgrade cpp code
     Create Settings Window
     Create Context Menu

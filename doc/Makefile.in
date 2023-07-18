@@ -40,7 +40,6 @@ all:
 	sed $(SEDREPLACE) < $(srcdir)/rxvtc.1.man.in  >rxvtc.1.man
 	sed $(SEDREPLACE) < $(srcdir)/rxvtd.1.man.in  >rxvtd.1.man
 	sed $(SEDREPLACE) < $(srcdir)/rxvt.7.man.in   >rxvt.7.man
-	sed $(SEDREPLACE) < $(srcdir)/rclock.1.man.in >rclock.1.man
 
 .INTERMEDIATE: rxvt.7.tbl
 
@@ -73,7 +72,7 @@ $(srcdir)/etc/rxvt-unicode.termcap: $(srcdir)/etc/rxvt-unicode.terminfo
 
 tags allbin:
 
-alldoc: rxvt.1.man.in rxvt.7.man.in rxvtc.1.man.in rxvtd.1.man.in rclock.1.man.in \
+alldoc: rxvt.1.man.in rxvt.7.man.in rxvtc.1.man.in rxvtd.1.man.in \
 	../README.configure ../README.FAQ \
 	$(srcdir)/etc/rxvt-unicode.termcap
 
@@ -83,7 +82,7 @@ alldocclean:
 	rm -f $(srcdir)/etc/rxvt-unicode.termcap
 
 clean:
-	rm -f rxvt.1.man rxvt.7.man rxvtc.1.man rxvtd.1.man rclock.1.man
+	rm -f rxvt.1.man rxvt.7.man rxvtc.1.man rxvtd.1.man
 
 distclean: clean
 	rm -f Makefile
@@ -99,7 +98,6 @@ install: all
 	$(INSTALL_DATA) rxvtc.1.man   $(DESTDIR)$(man1dir)/$(RXVTNAME)c.$(man1ext)
 	$(INSTALL_DATA) rxvtd.1.man   $(DESTDIR)$(man1dir)/$(RXVTNAME)d.$(man1ext)
 	$(INSTALL_DATA) rxvt.7.man    $(DESTDIR)$(man7dir)/$(RXVTNAME).$(man7ext)
-	$(INSTALL_DATA) rclock.1.man  $(DESTDIR)$(man1dir)/urclock.$(man1ext)
 	@TIC@ -x $(srcdir)/etc/rxvt-unicode.terminfo || \
            @TIC@ $(srcdir)/etc/rxvt-unicode.terminfo
 

@@ -31,12 +31,10 @@ doc/rxvt.1.pod
 doc/rxvt.7.pod
 doc/rxvtc.1.pod
 doc/rxvtd.1.pod
-doc/rclock.1.pod
 doc/rxvt.1.man.in
 doc/rxvt.7.man.in
 doc/rxvtc.1.man.in
 doc/rxvtd.1.man.in
-doc/rclock.1.man.in
 doc/extensions.pod.top
 doc/extensions.pod.bot
 
@@ -71,7 +69,6 @@ src/rxvtimg.h
 src/rxvtimg.C
 src/rxvt.C
 src/rxvt.h
-src/rclock.C
 src/rsinc.h
 src/rxvtc.C
 src/rxvtd.C

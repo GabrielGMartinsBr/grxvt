@@ -44,7 +44,6 @@ COMMON_DAEMON = rxvtdaemon.o
 RXVT_BINNAME=$(DESTDIR)$(bindir)/$(RXVTNAME)$(EXEEXT)
 RXVTC_BINNAME=$(DESTDIR)$(bindir)/$(RXVTNAME)c$(EXEEXT)
 RXVTD_BINNAME=$(DESTDIR)$(bindir)/$(RXVTNAME)d$(EXEEXT)
-RCLOCK_BINNAME=$(DESTDIR)$(bindir)/urclock$(EXEEXT)
 
 #
 # Distribution variables
@@ -70,8 +69,6 @@ rxvtd: rxvtd.o $(COMMON) $(COMMON_DAEMON)
 rxvtc: rxvtc.o $(COMMON_DAEMON)
 	$(LINK) -o $@ rxvtc.o $(COMMON_DAEMON) $(LIBS)
 
-rclock: rclock.o
-	$(LINK) -o $@ rclock.o $(LIBS) $(XLIB)
 
 #-------------------------------------------------------------------------
 
@@ -81,12 +78,12 @@ tags: *.[Ch]
 TAGS: *.[Ch]
 	etags *.[Ch]
 
-allbin: rxvt rxvtd rxvtc rclock
+allbin: rxvt rxvtd rxvtc
 
 alldoc:
 
 clean:
-	rm -f rxvt rxvtc rxvtd rclock manlst mantmp
+	rm -f rxvt rxvtc rxvtd manlst mantmp
 	rm -f *.o
 
 distclean: clean
@@ -102,7 +99,6 @@ install-bin: allbin
 	$(INSTALL_PROGRAM) rxvt  $(RXVT_BINNAME)
 	$(INSTALL_PROGRAM) rxvtc $(RXVTC_BINNAME)
 	$(INSTALL_PROGRAM) rxvtd $(RXVTD_BINNAME)
-	$(INSTALL_PROGRAM) rclock $(RCLOCK_BINNAME)
 
 install: install-bin
 
@@ -154,7 +150,6 @@ misc.o: ../config.h rxvt.h feature.h ecb.h encoding.h rxvtutil.h estl.h
 misc.o: emman.h rxvtfont.h rxvttoolkit.h ev_cpp.h ../config.h ../libev/ev++.h
 misc.o: ../libev/ev.h callback.h rxvtimg.h scrollbar.h hookinc.h
 misc.o: rsinc.h optinc.h
-rclock.o: ecb.h version.h
 rxvt.o: ../config.h rxvt.h feature.h ecb.h encoding.h rxvtutil.h estl.h
 rxvt.o: emman.h rxvtfont.h rxvttoolkit.h ev_cpp.h ../config.h ../libev/ev++.h
 rxvt.o: ../libev/ev.h callback.h rxvtimg.h scrollbar.h hookinc.h
