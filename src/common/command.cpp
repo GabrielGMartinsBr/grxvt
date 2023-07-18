@@ -48,7 +48,6 @@
 /*{{{ includes: */
 #include "command.h"
 
-#include "../config.h"
 #include "rxvt.h"
 #include "version.h"
 
@@ -1285,12 +1284,6 @@ rxvt_term::x_cb(XEvent &ev)
 
   dLocal(Display *, dpy);
 
-  if (
-    ev.xany.window == vt
-    // && SHOULD_INVOKE(HOOK_X_EVENT) && HOOK_INVOKE((this, HOOK_X_EVENT, DT_XEVENT, &ev, DT_END))
-  )
-    return;
-
   // for XQueryPointer
   Window unused_root, unused_child;
   int unused_root_x, unused_root_y;
@@ -1314,10 +1307,7 @@ rxvt_term::x_cb(XEvent &ev)
       break;
 
     case ClientMessage:
-      if (
-        ev.xclient.format == 32
-        // && !HOOK_INVOKE((this, HOOK_CLIENT_MESSAGE, DT_XEVENT, &ev, DT_END))
-      ) {
+      if (ev.xclient.format == 32) {
         if (ev.xclient.message_type == xa[XA_WM_PROTOCOLS]) {
           if (ev.xclient.data.l[0] == xa[XA_WM_DELETE_WINDOW]) {
             destroy();
@@ -1473,9 +1463,6 @@ rxvt_term::x_cb(XEvent &ev)
         break;
 
       if (ev.xany.window == vt) {
-        // if (SHOULD_INVOKE(HOOK_MOTION_NOTIFY) && HOOK_INVOKE((this, HOOK_MOTION_NOTIFY, DT_XEVENT, &ev, DT_END)))
-        // ;  // nop
-        // else
         if (ev.xbutton.state & (Button1Mask | Button3Mask)) {
           while (XCheckTypedWindowEvent(dpy, vt, MotionNotify, &ev))
             ;

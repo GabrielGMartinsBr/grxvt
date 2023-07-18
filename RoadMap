@@ -14,6 +14,7 @@ Done:
         [17/07/23] Remove Perl support and extensions
         [17/07/23] Remove RClock
         [18/07/23] Fix close frame window button
+        [18/07/23] Restore scroll with mouse
         ...
     
     Migrate To Cmake
@@ -35,7 +36,6 @@ Done:
         ...
 
 To do:
-    Restore scroll with mouse/touchpad
     Remove non vital Macros
     Adopt only one iso for input policy
     Migrate project to Cmake
