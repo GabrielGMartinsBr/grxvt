@@ -25,6 +25,21 @@ set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
 include(CPack)
 
+# Find FreeType
+find_package(Freetype REQUIRED)
+include_directories(${FREETYPE_INCLUDE_DIRS})
+link_libraries(${FREETYPE_LIBRARIES})
+
+# XLib
+find_package(X11 REQUIRED)
+link_libraries(${X11_LIBRARIES})
+include_directories(${X11_INCLUDE_DIR})
+
+# Xrender
+find_library(XRENDER_LIBRARIES NAMES Xrender)
+link_libraries(${XRENDER_LIBRARIES})
+include_directories(${XRENDER_INCLUDE_DIRS})
+
 # Find libev package
 # find_package(Libev REQUIRED)
 # link_libraries(${LIBEV_LIBRARIES})
@@ -35,15 +50,10 @@ include_directories(./libev)
 include_directories(./src)
 include_directories(./src/common)
 
-# # Find FreeType
-# find_package(Freetype REQUIRED)
-# include_directories(${FREETYPE_INCLUDE_DIRS})
-# link_libraries(${FREETYPE_LIBRARIES})
 
 # Set the additional include directories
 include_directories(
     /usr/include/uuid
-    /usr/include/freetype2
     /usr/include/libpng16
     /usr/include/harfbuzz
     /usr/include/glib-2.0
@@ -57,13 +67,9 @@ set(LIBS
     m
     ptytty
     fontconfig
-    freetype
     Xft
-    Xrender
-    X11
     Xmu
     Xt
-    # gdk_pixbuf-2.0
     gobject-2.0
     glib-2.0
     startup-notification-1
