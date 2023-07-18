@@ -648,12 +648,6 @@ ac_includes_default="\
 ac_header_c_list=
 ac_subst_vars='LTLIBOBJS
 LIBOBJS
-PERL_O
-IF_PERL
-PERLPRIVLIBEXP
-PERLFLAGS
-PERLLIB
-PERL
 XFT_CONFIG
 EGREP
 GREP
@@ -745,11 +739,8 @@ enable_fading
 enable_rxvt_scroll
 enable_next_scroll
 enable_xterm_scroll
-enable_perl
 with_codesets
 enable_xim
-enable_backspace_key
-enable_delete_key
 enable_resources
 enable_8bitctrls
 enable_fallback
@@ -811,7 +802,7 @@ x_libraries=NONE
 # These are left unexpanded so users can "make install exec_prefix=/foo"
 # and all the variables that are supposed to be based on exec_prefix
 # by default will actually change.
-# Use braces instead of parens because sh, perl, etc. also accept them.
+# Use braces instead of parens because sh, etc. also accept them.
 # (The list follows the same order as the GNU Coding Standards.)
 bindir='${exec_prefix}/bin'
 sbindir='${exec_prefix}/sbin'
@@ -1422,10 +1413,7 @@ Optional Features:
   --enable-rxvt-scroll    enable rxvt style scrollbar
   --enable-next-scroll    enable NeXT style scrollbar
   --enable-xterm-scroll   enable Xterm style scrollbar
-  --enable-perl           enable embedded perl interpreter
   --enable-xim            XIM (X Input Method) protocol support
-  --disable-backspace-key disable handling of the backspace key
-  --disable-delete-key    disable handling of the delete key
   --disable-resources     disable all resource checking
   --enable-8bitctrls      enable 8 bit control sequences (not recommended)
   --enable-fallback[=CLASS]
@@ -5003,7 +4991,6 @@ support_combining=yes
 support_8bitctrls=no
 support_iso14755=yes
 support_styles=yes
-support_perl=yes
 codesets=all
 
 
@@ -5033,7 +5020,6 @@ then :
        support_8bitctrls=no
        support_iso14755=no
        support_styles=no
-       support_perl=no
        codesets=
     fi
     if test x$enableval = xyes; then
@@ -5058,7 +5044,6 @@ then :
        #support_8bitctrls=yes
        support_iso14755=yes
        support_styles=yes
-       support_perl=yes
        codesets=all
     fi
 
@@ -5238,14 +5223,6 @@ then :
 fi
 
 
-# Check whether --enable-perl was given.
-if test ${enable_perl+y}
-then :
-  enableval=$enable_perl; if test x$enableval = xyes -o x$enableval = xno; then
-    support_perl=$enableval
-  fi
-fi
-
 
 
 # Check whether --with-codesets was given.
@@ -5262,6 +5239,7 @@ then :
     support_xim=$enableval
   fi
 fi
+
 
 
 support_resources=yes
@@ -5458,8 +5436,8 @@ fi
 
 
 if test x$support_resources = xno; then
-  if test x$support_frills = xyes || test x$support_perl = xyes; then
-    as_fn_error $? "--disable-resources requires --disable-frills --disable-perl" "$LINENO" 5
+  if test x$support_frills = xyes; then
+    as_fn_error $? "--disable-resources requires --disable-frills" "$LINENO" 5
   fi
 
 
@@ -7754,138 +7732,6 @@ printf "%s\n" "#define ENCODING_ZH_EXT 1" >>confdefs.h
   esac
 done
 
-IF_PERL=\#
-if test x$support_perl = xyes; then
-  # Extract the first word of "perl5", so it can be a program name with args.
-set dummy perl5; ac_word=$2
-{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
-printf %s "checking for $ac_word... " >&6; }
-if test ${ac_cv_path_PERL+y}
-then :
-  printf %s "(cached) " >&6
-else $as_nop
-  case $PERL in
-  [\\/]* | ?:[\\/]*)
-  ac_cv_path_PERL="$PERL" # Let the user override the test with a path.
-  ;;
-  *)
-  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  case $as_dir in #(((
-    '') as_dir=./ ;;
-    */) ;;
-    *) as_dir=$as_dir/ ;;
-  esac
-    for ac_exec_ext in '' $ac_executable_extensions; do
-  if as_fn_executable_p "$as_dir$ac_word$ac_exec_ext"; then
-    ac_cv_path_PERL="$as_dir$ac_word$ac_exec_ext"
-    printf "%s\n" "$as_me:${as_lineno-$LINENO}: found $as_dir$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-  done
-IFS=$as_save_IFS
-
-  test -z "$ac_cv_path_PERL" && ac_cv_path_PERL="perl"
-  ;;
-esac
-fi
-PERL=$ac_cv_path_PERL
-if test -n "$PERL"; then
-  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $PERL" >&5
-printf "%s\n" "$PERL" >&6; }
-else
-  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
-printf "%s\n" "no" >&6; }
-fi
-
-
-
-
-  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for xext (using pkg-config)" >&5
-printf %s "checking for xext (using pkg-config)... " >&6; }
-  if test $PKG_CONFIG != no && $PKG_CONFIG --exists xext; then
-    XEXT_CFLAGS="`$PKG_CONFIG --cflags xext`"
-    XEXT_LIBS="`$PKG_CONFIG --libs xext`"
-
-    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: ok" >&5
-printf "%s\n" "ok" >&6; }
-    :
-  else
-    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
-printf "%s\n" "no" >&6; }
-
-    as_fn_error $? "unable to find xext, required for perl" "$LINENO" 5
-
-  fi
-
-
-  X_LIBS="$XEXT_LIBS $X_LIBS"
-  CPPFLAGS="$CPPFLAGS $XEXT_CFLAGS"
-
-  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for $PERL suitability" >&5
-printf %s "checking for $PERL suitability... " >&6; }
-  if $PERL -MExtUtils::Embed -e "use v5.8" >/dev/null 2>/dev/null; then
-
-     save_CXXFLAGS="$CXXFLAGS"
-     save_LIBS="$LIBS"
-     CXXFLAGS="$CXXFLAGS `$PERL -MExtUtils::Embed -e ccopts`"
-     LIBS="$LIBS `$PERL -MExtUtils::Embed -e ldopts`"
-     cat confdefs.h - <<_ACEOF >conftest.$ac_ext
-/* end confdefs.h.  */
-
-#include <EXTERN.h>
-#include <perl.h>
-#include <XSUB.h>
-
-int
-main (void)
-{
-
-     PerlInterpreter *perl = perl_alloc ();
-
-  ;
-  return 0;
-}
-_ACEOF
-if ac_fn_cxx_try_link "$LINENO"
-then :
-  rxvt_perl_link=yes
-else $as_nop
-  rxvt_perl_link=no
-fi
-rm -f core conftest.err conftest.$ac_objext conftest.beam \
-    conftest$ac_exeext conftest.$ac_ext
-     CXXFLAGS="$save_CXXFLAGS"
-     LIBS="$save_LIBS"
-
-     if test x$rxvt_perl_link = xyes; then
-        { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: ok" >&5
-printf "%s\n" "ok" >&6; }
-
-printf "%s\n" "#define ENABLE_PERL 1" >>confdefs.h
-
-        IF_PERL=
-        PERL_O=rxvtperl.o
-        PERLFLAGS="`$PERL -MExtUtils::Embed -e ccopts`"
-        PERLLIB="`$PERL -MExtUtils::Embed -e ldopts`"
-        PERLPRIVLIBEXP="`$PERL -MConfig -e 'print $Config{privlibexp}'`"
-     else
-        as_fn_error $? "no, unable to link" "$LINENO" 5
-     fi
-  else
-     as_fn_error $? "no working perl found, or perl not version >= 5.8" "$LINENO" 5
-  fi
-fi
-
-
-
-
-
-
-
 
 ac_config_files="$ac_config_files Makefile doc/Makefile src/Makefile"
 
@@ -9186,7 +9032,6 @@ if test x$RESFALLBACK != x; then
    echo "  resource class fallback:    $RESFALLBACK"
 fi
 echo
-echo "  embedded perl:              $support_perl"
 echo "  image library:              $image_lib"
 echo
 if test x$support_xim = xyes -a x$rxvt_cv_func_xlocale = xno; then

@@ -133,8 +133,6 @@ src/table/jis0213_2.h
 src/urxvt.pm
 src/typemap
 src/typemap.iom
-src/iom_perl.h
-src/iom_perl.xs
 
 
 
