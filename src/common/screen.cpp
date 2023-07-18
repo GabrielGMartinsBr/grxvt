@@ -25,7 +25,7 @@
  * This file handles _all_ screen updates and selections
  */
 
-#include "../config.h"          /* NECESSARY */
+#include "config.h"          /* NECESSARY */
 #include "rxvt.h"               /* NECESSARY */
 
 #include <inttypes.h>

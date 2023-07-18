@@ -31,7 +31,7 @@
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  *---------------------------------------------------------------------*/
 
-#include "../config.h"          /* NECESSARY */
+#include "config.h"          /* NECESSARY */
 #include "rxvt.h"               /* NECESSARY */
 #include "init.h"
 #include "keyboard.h"

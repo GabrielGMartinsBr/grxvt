@@ -46,7 +46,6 @@ include_directories(${XRENDER_INCLUDE_DIRS})
 # include_directories(${LIBEV_INCLUDE_DIRS})
 
 
-include_directories(${CMAKE_SOURCE_DIR})
 include_directories(./libev)
 include_directories(src)
 include_directories(src/common)

@@ -32,7 +32,7 @@
 /*
  * Initialisation routines.
  */
-#include "../config.h"          /* NECESSARY */
+#include "config.h"          /* NECESSARY */
 #include "rxvt.h"               /* NECESSARY */
 #include "rxvtutil.h"
 #include "init.h"

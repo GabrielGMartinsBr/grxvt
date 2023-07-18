@@ -14,5 +14,5 @@ fi
 
 if autoheader && autoconf; then
    rm -rf autom4te.cache
-   echo "Now run ./configure"
+   echo "Now you can build the project with cmake"
 fi

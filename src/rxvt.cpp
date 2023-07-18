@@ -23,7 +23,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "../config.h"
+#include "config.h"
 #include "rxvt.h"
 
 int main(int argc, char *argv[])

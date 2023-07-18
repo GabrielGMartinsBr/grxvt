@@ -1,417 +1,415 @@
-/* config.h.in.  Generated from configure.ac by autoheader.  */
-
 /* Define if you want 8 bit control sequences */
-#undef EIGHT_BIT_CONTROLS
+/* #undef EIGHT_BIT_CONTROLS */
 
 /* Define if you want to automatically compose combining characters */
-#undef ENABLE_COMBINING
+#define ENABLE_COMBINING 1
 
 /* Define if you want handling for rarely used but handy features */
-#undef ENABLE_FRILLS
+#define ENABLE_FRILLS 1
 
 /* Define if you want bold and italic support */
-#undef ENABLE_STYLES
+#define ENABLE_STYLES 1
 
 /* Define if you want your background to use the parent window background */
-#undef ENABLE_TRANSPARENCY
+#define ENABLE_TRANSPARENCY 1
 
 /* Define if you want european extended codesets */
-#undef ENCODING_EU
+#define ENCODING_EU 1
 
 /* Define if you want japanese codesets */
-#undef ENCODING_JP
+#define ENCODING_JP 1
 
 /* Define if you want extended japanese codesets */
-#undef ENCODING_JP_EXT
+#define ENCODING_JP_EXT 1
 
 /* Define if you want korean codesets */
-#undef ENCODING_KR
+#define ENCODING_KR 1
 
 /* Define if you want vietnamese codesets */
-#undef ENCODING_VN
+#define ENCODING_VN 1
 
 /* Define if you want chinese codesets */
-#undef ENCODING_ZH
+#define ENCODING_ZH 1
 
 /* Define if you want extended chinese codesets */
-#undef ENCODING_ZH_EXT
+#define ENCODING_ZH_EXT 1
 
 /* Define to 1 if you have the `clock_gettime' function. */
-#undef HAVE_CLOCK_GETTIME
+#define HAVE_CLOCK_GETTIME 1
 
 /* Define to 1 to use the syscall interface for clock_gettime */
-#undef HAVE_CLOCK_SYSCALL
+/* #undef HAVE_CLOCK_SYSCALL */
 
 /* Define to 1 if you have the `epoll_ctl' function. */
-#undef HAVE_EPOLL_CTL
+#define HAVE_EPOLL_CTL 1
 
 /* Define to 1 if you have the `eventfd' function. */
-#undef HAVE_EVENTFD
+#define HAVE_EVENTFD 1
 
 /* Define to 1 if you have the `FcPatternGet' function. */
-#undef HAVE_FCPATTERNGET
+#define HAVE_FCPATTERNGET 1
 
 /* Define to 1 if the floor function is available */
-#undef HAVE_FLOOR
+#define HAVE_FLOOR 1
 
 /* Define to 1 if you have the <fontconfig/fontconfig.h> header file. */
-#undef HAVE_FONTCONFIG_FONTCONFIG_H
+#define HAVE_FONTCONFIG_FONTCONFIG_H 1
 
 /* Define to 1 if you have the `inotify_init' function. */
-#undef HAVE_INOTIFY_INIT
+#define HAVE_INOTIFY_INIT 1
 
 /* Define to 1 if you have the <inttypes.h> header file. */
-#undef HAVE_INTTYPES_H
+#define HAVE_INTTYPES_H 1
 
 /* Define to 1 if linux/fs.h defined kernel_rwf_t */
-#undef HAVE_KERNEL_RWF_T
+#define HAVE_KERNEL_RWF_T 1
 
 /* Define to 1 if you have the `kqueue' function. */
-#undef HAVE_KQUEUE
+/* #undef HAVE_KQUEUE */
 
 /* Define to 1 if you have the `rt' library (-lrt). */
-#undef HAVE_LIBRT
+/* #undef HAVE_LIBRT */
 
 /* Define to 1 if you have the <linux/aio_abi.h> header file. */
-#undef HAVE_LINUX_AIO_ABI_H
+#define HAVE_LINUX_AIO_ABI_H 1
 
 /* Define to 1 if you have the <linux/fs.h> header file. */
-#undef HAVE_LINUX_FS_H
+#define HAVE_LINUX_FS_H 1
 
 /* Define to 1 if you have the <minix/config.h> header file. */
-#undef HAVE_MINIX_CONFIG_H
+/* #undef HAVE_MINIX_CONFIG_H */
 
 /* Define to 1 if you have the `nanosleep' function. */
-#undef HAVE_NANOSLEEP
+#define HAVE_NANOSLEEP 1
 
 /* Define if nl_langinfo(CODESET) works */
-#undef HAVE_NL_LANGINFO
+#define HAVE_NL_LANGINFO 1
 
 /* Define if you want to use gdk-pixbuf for image processing */
-#undef HAVE_PIXBUF
+#define HAVE_PIXBUF 1
 
 /* Define to 1 if you have the `poll' function. */
-#undef HAVE_POLL
+#define HAVE_POLL 1
 
 /* Define to 1 if you have the <poll.h> header file. */
-#undef HAVE_POLL_H
+#define HAVE_POLL_H 1
 
 /* Define to 1 if you have the `port_create' function. */
-#undef HAVE_PORT_CREATE
+/* #undef HAVE_PORT_CREATE */
 
 /* Define to 1 if you have the <port.h> header file. */
-#undef HAVE_PORT_H
+/* #undef HAVE_PORT_H */
 
 /* Define to 1 if you have the `select' function. */
-#undef HAVE_SELECT
+#define HAVE_SELECT 1
 
 /* Define to 1 if you have the `signalfd' function. */
-#undef HAVE_SIGNALFD
+#define HAVE_SIGNALFD 1
 
 /* Define if freedesktop startup notifications should be supported */
-#undef HAVE_STARTUP_NOTIFICATION
+#define HAVE_STARTUP_NOTIFICATION 1
 
 /* Define to 1 if you have the <stdint.h> header file. */
-#undef HAVE_STDINT_H
+#define HAVE_STDINT_H 1
 
 /* Define to 1 if you have the <stdio.h> header file. */
-#undef HAVE_STDIO_H
+#define HAVE_STDIO_H 1
 
 /* Define to 1 if you have the <stdlib.h> header file. */
-#undef HAVE_STDLIB_H
+#define HAVE_STDLIB_H 1
 
 /* Define to 1 if you have the <strings.h> header file. */
-#undef HAVE_STRINGS_H
+#define HAVE_STRINGS_H 1
 
 /* Define to 1 if you have the <string.h> header file. */
-#undef HAVE_STRING_H
+#define HAVE_STRING_H 1
 
 /* Define to 1 if you have the <sys/byteorder.h> header file. */
-#undef HAVE_SYS_BYTEORDER_H
+/* #undef HAVE_SYS_BYTEORDER_H */
 
 /* Define to 1 if you have the <sys/epoll.h> header file. */
-#undef HAVE_SYS_EPOLL_H
+#define HAVE_SYS_EPOLL_H 1
 
 /* Define to 1 if you have the <sys/eventfd.h> header file. */
-#undef HAVE_SYS_EVENTFD_H
+#define HAVE_SYS_EVENTFD_H 1
 
 /* Define to 1 if you have the <sys/event.h> header file. */
-#undef HAVE_SYS_EVENT_H
+/* #undef HAVE_SYS_EVENT_H */
 
 /* Define to 1 if you have the <sys/inotify.h> header file. */
-#undef HAVE_SYS_INOTIFY_H
+#define HAVE_SYS_INOTIFY_H 1
 
 /* Define to 1 if you have the <sys/ioctl.h> header file. */
-#undef HAVE_SYS_IOCTL_H
+#define HAVE_SYS_IOCTL_H 1
 
 /* Define to 1 if you have the <sys/select.h> header file. */
-#undef HAVE_SYS_SELECT_H
+#define HAVE_SYS_SELECT_H 1
 
 /* Define to 1 if you have the <sys/signalfd.h> header file. */
-#undef HAVE_SYS_SIGNALFD_H
+#define HAVE_SYS_SIGNALFD_H 1
 
 /* Define to 1 if you have the <sys/sockio.h> header file. */
-#undef HAVE_SYS_SOCKIO_H
+/* #undef HAVE_SYS_SOCKIO_H */
 
 /* Define to 1 if you have the <sys/stat.h> header file. */
-#undef HAVE_SYS_STAT_H
+#define HAVE_SYS_STAT_H 1
 
 /* Define to 1 if you have the <sys/strredir.h> header file. */
-#undef HAVE_SYS_STRREDIR_H
+/* #undef HAVE_SYS_STRREDIR_H */
 
 /* Define to 1 if you have the <sys/timerfd.h> header file. */
-#undef HAVE_SYS_TIMERFD_H
+#define HAVE_SYS_TIMERFD_H 1
 
 /* Define to 1 if you have the <sys/types.h> header file. */
-#undef HAVE_SYS_TYPES_H
+#define HAVE_SYS_TYPES_H 1
 
 /* Define to 1 if you have the <unistd.h> header file. */
-#undef HAVE_UNISTD_H
+#define HAVE_UNISTD_H 1
 
 /* Define to 1 if you have the `unsetenv' function. */
-#undef HAVE_UNSETENV
+#define HAVE_UNSETENV 1
 
 /* Define to 1 if you have the <wchar.h> header file. */
-#undef HAVE_WCHAR_H
+#define HAVE_WCHAR_H 1
 
 /* Define to 1 if you have the <X11/Xft/Xft.h> header file. */
-#undef HAVE_X11_XFT_XFT_H
+#define HAVE_X11_XFT_XFT_H 1
 
 /* Define to 1 if you have the `XftDrawString32' function. */
-#undef HAVE_XFTDRAWSTRING32
+#define HAVE_XFTDRAWSTRING32 1
 
 /* Define to enable Xmu support */
-#undef HAVE_XMU
+#define HAVE_XMU 1
 
 /* Define if setlocale (defined to Xsetlocale) works */
-#undef HAVE_XSETLOCALE
+#define HAVE_XSETLOCALE 1
 
 /* Define if you want ISO 14755 extended support */
-#undef ISO_14755
+#define ISO_14755 1
 
 /* Define to have CTRL cause wheel events to accelerate scrolling. Release
    CTRL to halt scrolling */
-#undef MOUSE_SLIP_WHEELING
+#define MOUSE_SLIP_WHEELING 1
 
 /* Define to use wheel events (button4 and button5) to scroll */
-#undef MOUSE_WHEEL
+#define MOUSE_WHEEL 1
 
 /* Disable assertions (good for debugging) */
-#undef NDEBUG
+#define NDEBUG 1
 
 
 /* Define if you don't want any resources read */
-#undef NO_RESOURCES
+/* #undef NO_RESOURCES */
 
 /* Define for continual scrolling when you keep the scrollbar button pressed
  */
-#undef NO_SCROLLBAR_BUTTON_CONTINUAL_SCROLLING
+/* #undef NO_SCROLLBAR_BUTTON_CONTINUAL_SCROLLING */
 
 /* Disable the secondary screen. Many programs use the secondary screen as
    their workplace */
-#undef NO_SECONDARY_SCREEN
+/* #undef NO_SECONDARY_SCREEN */
 
 /* Define if you want faded colors when focus is lost */
-#undef OFF_FOCUS_FADING
+#define OFF_FOCUS_FADING 1
 
 /* Define to the address where bug reports for this package should be sent. */
-#undef PACKAGE_BUGREPORT
+#define PACKAGE_BUGREPORT ""
 
 /* Define to the full name of this package. */
-#undef PACKAGE_NAME
+#define PACKAGE_NAME ""
 
 /* Define to the full name and version of this package. */
-#undef PACKAGE_STRING
+#define PACKAGE_STRING ""
 
 /* Define to the one symbol short name of this package. */
-#undef PACKAGE_TARNAME
+#define PACKAGE_TARNAME ""
 
 /* Define to the home page for this package. */
-#undef PACKAGE_URL
+#define PACKAGE_URL ""
 
 /* Define to the version of this package. */
-#undef PACKAGE_VERSION
+#define PACKAGE_VERSION ""
 
 /* Support plain style scrollbars */
-#undef PLAIN_SCROLLBAR
+#define PLAIN_SCROLLBAR 1
 
 /* Define if you want to hide the pointer while typing */
-#undef POINTER_BLANK
+#define POINTER_BLANK 1
 
 /* Resource class */
-#undef RESCLASS
+#define RESCLASS "URxvt"
 
 /* Fallback resource class */
-#undef RESFALLBACK
+#define RESFALLBACK "Rxvt"
 
 /* Default resource name */
-#undef RESNAME
+#define RESNAME "urxvt"
 
 /* Binary base name */
-#undef RXVTNAME
+#define RXVTNAME "urxvt"
 
 /* Set TERMINFO value to the value given by configure */
-#undef RXVT_TERMINFO
+/* #undef RXVT_TERMINFO */
 
 /* Define to allow scrolling when the selection moves to the top or bottom of
    the screen */
-#undef SELECTION_SCROLLING
+#define SELECTION_SCROLLING 1
 
 /* Define to use "smart" resize behavior */
-#undef SMART_RESIZE
+/* #undef SMART_RESIZE */
 
 /* Define to 1 if all of the C90 standard headers exist (not just the ones
    required in a freestanding environment). This macro is provided for
    backward compatibility; new code need not use it. */
-#undef STDC_HEADERS
+#define STDC_HEADERS 1
 
 /* Set TERM to the value given by configure */
-#undef TERMENV
+/* #undef TERMENV */
 
 /* Define if you want blinking text support */
-#undef TEXT_BLINK
+#define TEXT_BLINK 1
 
 /* Define if you want to represent unicode characters outside plane 0 */
-#undef UNICODE_3
+/* #undef UNICODE_3 */
 
 /* Define if you want 256-color support */
-#undef USE_256_COLORS
+/* #undef USE_256_COLORS */
 
 /* Enable extensions on AIX 3, Interix.  */
 #ifndef _ALL_SOURCE
-#undef _ALL_SOURCE
+#define _ALL_SOURCE 1
 #endif
 /* Enable general extensions on macOS.  */
 #ifndef _DARWIN_C_SOURCE
-#undef _DARWIN_C_SOURCE
+#define _DARWIN_C_SOURCE 1
 #endif
 /* Enable general extensions on Solaris.  */
 #ifndef __EXTENSIONS__
-#undef __EXTENSIONS__
+#define __EXTENSIONS__ 1
 #endif
 /* Enable GNU extensions on systems that have them.  */
 #ifndef _GNU_SOURCE
-#undef _GNU_SOURCE
+#define _GNU_SOURCE 1
 #endif
 /* Enable X/Open compliant socket functions that do not require linking
    with -lxnet on HP-UX 11.11.  */
 #ifndef _HPUX_ALT_XOPEN_SOCKET_API
-#undef _HPUX_ALT_XOPEN_SOCKET_API
+#define _HPUX_ALT_XOPEN_SOCKET_API 1
 #endif
 /* Identify the host operating system as Minix.
    This macro does not affect the system headers' behavior.
    A future release of Autoconf may stop defining this macro.  */
 #ifndef _MINIX
-#undef _MINIX
+/* #undef _MINIX */
 #endif
 /* Enable general extensions on NetBSD.
    Enable NetBSD compatibility extensions on Minix.  */
 #ifndef _NETBSD_SOURCE
-#undef _NETBSD_SOURCE
+#define _NETBSD_SOURCE 1
 #endif
 /* Enable OpenBSD compatibility extensions on NetBSD.
    Oddly enough, this does nothing on OpenBSD.  */
 #ifndef _OPENBSD_SOURCE
-#undef _OPENBSD_SOURCE
+#define _OPENBSD_SOURCE 1
 #endif
 /* Define to 1 if needed for POSIX-compatible behavior.  */
 #ifndef _POSIX_SOURCE
-#undef _POSIX_SOURCE
+/* #undef _POSIX_SOURCE */
 #endif
 /* Define to 2 if needed for POSIX-compatible behavior.  */
 #ifndef _POSIX_1_SOURCE
-#undef _POSIX_1_SOURCE
+/* #undef _POSIX_1_SOURCE */
 #endif
 /* Enable POSIX-compatible threading on Solaris.  */
 #ifndef _POSIX_PTHREAD_SEMANTICS
-#undef _POSIX_PTHREAD_SEMANTICS
+#define _POSIX_PTHREAD_SEMANTICS 1
 #endif
 /* Enable extensions specified by ISO/IEC TS 18661-5:2014.  */
 #ifndef __STDC_WANT_IEC_60559_ATTRIBS_EXT__
-#undef __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__ 1
 #endif
 /* Enable extensions specified by ISO/IEC TS 18661-1:2014.  */
 #ifndef __STDC_WANT_IEC_60559_BFP_EXT__
-#undef __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_BFP_EXT__ 1
 #endif
 /* Enable extensions specified by ISO/IEC TS 18661-2:2015.  */
 #ifndef __STDC_WANT_IEC_60559_DFP_EXT__
-#undef __STDC_WANT_IEC_60559_DFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__ 1
 #endif
 /* Enable extensions specified by ISO/IEC TS 18661-4:2015.  */
 #ifndef __STDC_WANT_IEC_60559_FUNCS_EXT__
-#undef __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__ 1
 #endif
 /* Enable extensions specified by ISO/IEC TS 18661-3:2015.  */
 #ifndef __STDC_WANT_IEC_60559_TYPES_EXT__
-#undef __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_TYPES_EXT__ 1
 #endif
 /* Enable extensions specified by ISO/IEC TR 24731-2:2010.  */
 #ifndef __STDC_WANT_LIB_EXT2__
-#undef __STDC_WANT_LIB_EXT2__
+#define __STDC_WANT_LIB_EXT2__ 1
 #endif
 /* Enable extensions specified by ISO/IEC 24747:2009.  */
 #ifndef __STDC_WANT_MATH_SPEC_FUNCS__
-#undef __STDC_WANT_MATH_SPEC_FUNCS__
+#define __STDC_WANT_MATH_SPEC_FUNCS__ 1
 #endif
 /* Enable extensions on HP NonStop.  */
 #ifndef _TANDEM_SOURCE
-#undef _TANDEM_SOURCE
+#define _TANDEM_SOURCE 1
 #endif
 /* Enable X/Open extensions.  Define to 500 only if necessary
    to make mbstate_t available.  */
 #ifndef _XOPEN_SOURCE
-#undef _XOPEN_SOURCE
+/* #undef _XOPEN_SOURCE */
 #endif
 
 /* Define if you want to have XIM (X Input Method) protocol support - required
    for multibyte characters input */
-#undef USE_XIM
+#define USE_XIM 1
 
 /* Define to enable xft support */
-#undef XFT
+#define XFT 1
 
 /* Define if your XIMCallback specifies XIC as first type. */
-#undef XIMCB_PROTO_BROKEN
+/* #undef XIMCB_PROTO_BROKEN */
 
 /* Define ONLY iff Xlib.h supports it */
-#undef XLIB_ILLEGAL_ACCESS
+#define XLIB_ILLEGAL_ACCESS 1
 
 /* Define to enable xrender support */
-#undef XRENDER
+#define XRENDER 1
 
 /* Define to 1 if the X Window System is missing or not being used. */
-#undef X_DISPLAY_MISSING
+/* #undef X_DISPLAY_MISSING */
 
 /* Define for Solaris 2.5.1 so the uint32_t typedef from <sys/synch.h>,
    <pthread.h>, or <semaphore.h> is not used. If the typedef were allowed, the
    #define below would cause a syntax error. */
-#undef _UINT32_T
+/* #undef _UINT32_T */
 
 /* Define to `int' if <sys/types.h> doesn't define. */
-#undef gid_t
+/* #undef gid_t */
 
 /* Define to the type of a signed integer type of width exactly 16 bits if
    such a type exists and the standard includes do not define it. */
-#undef int16_t
+/* #undef int16_t */
 
 /* Define to the type of a signed integer type of width exactly 32 bits if
    such a type exists and the standard includes do not define it. */
-#undef int32_t
+/* #undef int32_t */
 
 /* Define to `int' if <sys/types.h> does not define. */
-#undef mode_t
+/* #undef mode_t */
 
 /* Define as a signed integer type capable of holding a process identifier. */
-#undef pid_t
+/* #undef pid_t */
 
 /* Define to `int' if <sys/types.h> doesn't define. */
-#undef uid_t
+/* #undef uid_t */
 
 /* Define to the type of an unsigned integer type of width exactly 16 bits if
    such a type exists and the standard includes do not define it. */
-#undef uint16_t
+/* #undef uint16_t */
 
 /* Define to the type of an unsigned integer type of width exactly 32 bits if
    such a type exists and the standard includes do not define it. */
-#undef uint32_t
+/* #undef uint32_t */
