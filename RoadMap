@@ -1,0 +1,28 @@
+Done:
+    Setup workspace
+        [16/07/23] Fork and clone repo
+        [16/07/23] Setup compilation
+        [16/07/23] Setup debug
+
+    Simplify Project
+        [16/07/23] Make plain scrollbar the default
+        [17/07/23] Remove other extras scrollbars
+        [17/07/23] Put the scrollbar always on right side
+        [17/07/23] Remove scrollbar position option
+        [17/07/23] Remove define NO_DELETE_KEY
+        [17/07/23] Remove define NO_BACKSPACE_KEY
+        [17/07/23] Remove Perl support and extensions
+
+To Do:
+    Refactor code related with perl hooks
+    Refactor Input method
+        - Adopt only one iso for input policy
+    Refactor/Add text selection
+    Refactor/Add clipboard support
+    Remove Unecesary Customization options
+    Refactor settings/optiins file and commands
+    Migrate project to Cmake
+    Remove non vital Macros
+    Upgrade cpp code
+    Create Settings Window
+    Create Context Menu
