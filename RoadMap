@@ -16,6 +16,9 @@ Done:
         ...
     
     Migrate To Cmake
+        [18/07/23] Rename cpp files
+        [18/07/23] Restruct source file dir 
+        [18/07/23] Add cmake configuration for executables
         ...
 
     Refactor Vital Systems
