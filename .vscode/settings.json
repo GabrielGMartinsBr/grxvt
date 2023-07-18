@@ -1,9 +1,0 @@
-{
-    "makefile.launchConfigurations": [
-        {
-            "cwd": "/run/media/home/common/gabrielmartins.dev/dev/cpp/grxvt/build/src",
-            "binaryPath": "/run/media/home/common/gabrielmartins.dev/dev/cpp/grxvt/build/src/rxvt",
-            "binaryArgs": []
-        }
-    ]
-}
