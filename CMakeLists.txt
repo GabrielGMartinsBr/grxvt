@@ -98,3 +98,5 @@ set_target_properties(grxvtd PROPERTIES OUTPUT_NAME "grxvtd")
 target_link_libraries(grxvt ${LIBS})
 target_link_libraries(grxvtc ${LIBS})
 target_link_libraries(grxvtd ${LIBS})
+
+install(TARGETS grxvt grxvtc grxvtd DESTINATION /usr/local/bin)
