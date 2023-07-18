@@ -13,6 +13,7 @@ Done:
         [17/07/23] Remove define NO_BACKSPACE_KEY
         [17/07/23] Remove Perl support and extensions
         [17/07/23] Remove RClock
+        [18/07/23] Fix close frame window button
         ...
     
     Migrate To Cmake
@@ -34,7 +35,6 @@ Done:
         ...
 
 To do:
-    Fix window close
     Restore scroll with mouse/touchpad
     Remove non vital Macros
     Adopt only one iso for input policy

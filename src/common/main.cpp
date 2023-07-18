@@ -1002,7 +1002,7 @@ void rxvt_term::resize_all_windows(unsigned int newwidth, unsigned int newheight
   window_calc(newwidth, newheight);
 
   // bool set_hint = !HOOK_INVOKE((this, HOOK_RESIZE_ALL_WINDOWS, DT_INT, newwidth, DT_INT, newheight, DT_END));
-  bool set_hint = true;
+  bool set_hint = false;
 
   // to avoid races between us and the wm, we clear the incremental size hints around the xresizewindow
   if (set_hint) {

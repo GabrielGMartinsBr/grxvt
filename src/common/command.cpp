@@ -46,8 +46,9 @@
  *----------------------------------------------------------------------*/
 
 /*{{{ includes: */
-#include "../config.h"
 #include "command.h"
+
+#include "../config.h"
 #include "rxvt.h"
 #include "version.h"
 
@@ -773,8 +774,6 @@ rxvt_term::key_press(XKeyEvent &ev)
       }
     }
 
-    
-
     if (ctrl && meta && (keysym == XK_c || keysym == XK_v)) {
       if (keysym == XK_v)
         selection_request(ev.time, Sel_Clipboard);
@@ -1320,18 +1319,13 @@ rxvt_term::x_cb(XEvent &ev)
         // && !HOOK_INVOKE((this, HOOK_CLIENT_MESSAGE, DT_XEVENT, &ev, DT_END))
       ) {
         if (ev.xclient.message_type == xa[XA_WM_PROTOCOLS]) {
-          // if (
-          //   !HOOK_INVOKE((this, HOOK_WM_PROTOCOLS, DT_XEVENT, &ev, DT_END))
-          //   ) {
-          //   if (ev.xclient.data.l[0] == xa[XA_WM_DELETE_WINDOW]) {
-          //     if (!HOOK_INVOKE((this, HOOK_WM_DELETE_WINDOW, DT_XEVENT, &ev, DT_END)))
-          //       destroy();
-          //   }
+          if (ev.xclient.data.l[0] == xa[XA_WM_DELETE_WINDOW]) {
+            destroy();
+          }
 #if ENABLE_EWMH
           if (ev.xclient.data.l[0] == xa[XA_NET_WM_PING])
             XSendEvent(dpy, ev.xclient.window = display->root, False, SubstructureRedirectMask | SubstructureNotifyMask, &ev);
 #endif
-          // }
         }
 #if ENABLE_XEMBED
         else if (ev.xclient.format == 32 && ev.xclient.message_type == xa[XA_XEMBED]) {
