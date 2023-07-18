@@ -33,4 +33,6 @@ config.status
 Makefile
 libev
 build
+cbuild
 doc
+.cache

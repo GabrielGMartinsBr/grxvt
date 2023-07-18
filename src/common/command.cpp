@@ -743,6 +743,18 @@ rxvt_term::key_press(XKeyEvent &ev)
 #endif
     }
 
+    if (shft && ctrl) {
+      if (keysym == XK_c) {
+        int copy = true;
+      }
+
+      if (keysym == XK_v) {
+        int pasteW = true;
+      }
+
+      return;
+    }
+
     if (shft) {
       if (!ctrl && !meta && (priv_modes & PrivMode_ShiftKeys)) {
         switch (keysym) {
@@ -760,6 +772,8 @@ rxvt_term::key_press(XKeyEvent &ev)
         }
       }
     }
+
+    
 
     if (ctrl && meta && (keysym == XK_c || keysym == XK_v)) {
       if (keysym == XK_v)
@@ -887,8 +901,8 @@ rxvt_term::key_release(XKeyEvent &ev)
     }
 #endif
 
-  // if (HOOK_INVOKE((this, HOOK_KEY_RELEASE, DT_XEVENT, &ev, DT_INT, keysym, DT_END)))
-  //   return;
+    // if (HOOK_INVOKE((this, HOOK_KEY_RELEASE, DT_XEVENT, &ev, DT_INT, keysym, DT_END)))
+    //   return;
 
 #if defined(MOUSE_WHEEL) && defined(MOUSE_SLIP_WHEELING)
   if (!(ev.state & ControlMask))
@@ -1303,8 +1317,8 @@ rxvt_term::x_cb(XEvent &ev)
     case ClientMessage:
       if (
         ev.xclient.format == 32
-          // && !HOOK_INVOKE((this, HOOK_CLIENT_MESSAGE, DT_XEVENT, &ev, DT_END))
-          ) {
+        // && !HOOK_INVOKE((this, HOOK_CLIENT_MESSAGE, DT_XEVENT, &ev, DT_END))
+      ) {
         if (ev.xclient.message_type == xa[XA_WM_PROTOCOLS]) {
           // if (
           //   !HOOK_INVOKE((this, HOOK_WM_PROTOCOLS, DT_XEVENT, &ev, DT_END))
@@ -1314,8 +1328,8 @@ rxvt_term::x_cb(XEvent &ev)
           //       destroy();
           //   }
 #if ENABLE_EWMH
-            if (ev.xclient.data.l[0] == xa[XA_NET_WM_PING])
-              XSendEvent(dpy, ev.xclient.window = display->root, False, SubstructureRedirectMask | SubstructureNotifyMask, &ev);
+          if (ev.xclient.data.l[0] == xa[XA_NET_WM_PING])
+            XSendEvent(dpy, ev.xclient.window = display->root, False, SubstructureRedirectMask | SubstructureNotifyMask, &ev);
 #endif
           // }
         }
@@ -1466,9 +1480,9 @@ rxvt_term::x_cb(XEvent &ev)
 
       if (ev.xany.window == vt) {
         // if (SHOULD_INVOKE(HOOK_MOTION_NOTIFY) && HOOK_INVOKE((this, HOOK_MOTION_NOTIFY, DT_XEVENT, &ev, DT_END)))
-          // ;  // nop
-          // else
-            if (ev.xbutton.state & (Button1Mask | Button3Mask)) {
+        // ;  // nop
+        // else
+        if (ev.xbutton.state & (Button1Mask | Button3Mask)) {
           while (XCheckTypedWindowEvent(dpy, vt, MotionNotify, &ev))
             ;
 
@@ -2048,7 +2062,7 @@ rxvt_term::cmd_parse()
 
       // if (!(SHOULD_INVOKE(HOOK_ADD_LINES)
       //       && HOOK_INVOKE((this, HOOK_ADD_LINES, DT_WCS_LEN, buf, str - buf, DT_END))))
-        scr_add_lines(buf, str - buf, nlines);
+      scr_add_lines(buf, str - buf, nlines);
 
       /*
        * If there have been a lot of new lines, then update the screen
@@ -3375,7 +3389,6 @@ void rxvt_term::process_xterm_seq(int op, char *str, string_term &st)
 
     break;
 #endif
-
   }
 }
 /*----------------------------------------------------------------------*/
@@ -3450,7 +3463,7 @@ void rxvt_term::process_terminal_mode(int mode, int priv ecb_unused, unsigned in
     // 45 margin bell NYI
     // 46 start logging
     { 47, PrivMode_Screen },
-    { 66, PrivMode_aplKP },  // DECNKM
+    { 66, PrivMode_aplKP },      // DECNKM
     { 67, PrivMode_BackSpace },  // DECBKM
     { 1000, PrivMode_MouseX11 },
     { 1002, PrivMode_MouseBtnEvent },
