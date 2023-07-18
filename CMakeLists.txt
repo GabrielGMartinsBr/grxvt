@@ -45,10 +45,11 @@ include_directories(${XRENDER_INCLUDE_DIRS})
 # link_libraries(${LIBEV_LIBRARIES})
 # include_directories(${LIBEV_INCLUDE_DIRS})
 
-include_directories(./)
+
+include_directories(${CMAKE_SOURCE_DIR})
 include_directories(./libev)
-include_directories(./src)
-include_directories(./src/common)
+include_directories(src)
+include_directories(src/common)
 
 
 # Set the additional include directories
